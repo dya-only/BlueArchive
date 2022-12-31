@@ -93,10 +93,10 @@ function Main() {
   const onYuukaStory = () => {
     onClickQuitMomo()
     setIsYuukaStory(1)  // Act 1 재생
-    setTimeout(()=>{ setIsYuukaStory(2) }, 74150)
-    setTimeout(()=>{ setIsYuukaStory(3) }, 118150)
-    setTimeout(()=>{ setIsYuukaStory(4) }, 164500)
-    setTimeout(()=>{ setIsYuukaStory(0) }, 225100)
+    // setTimeout(()=>{ setIsYuukaStory(2) }, 74150)
+    // setTimeout(()=>{ setIsYuukaStory(3) }, 118150)
+    // setTimeout(()=>{ setIsYuukaStory(4) }, 164300)
+    // setTimeout(()=>{ setIsYuukaStory(0) }, 225100)
     // localStorage.setItem("YuukaStoryProgress", String(parseInt(JSON.parse(localStorage.getItem("YuukaStoryProgress") || '{}')) + 1))
   }
 
@@ -170,25 +170,25 @@ function Main() {
 
       {/* Yuuka Story Act 1 */}
       { isYuukaStory == 1 || isYuukaStory == 2 ?
-        <video className="w-screen absolute z-20" autoPlay>
+        <video className="w-screen absolute z-20" autoPlay onEnded={ () => setIsYuukaStory(2) }>
           <source src={ YuukaStory1 } type="video/mp4" />
         </video>
        : null }
       {/* Yuuka Story Act 1-2 */}
       { isYuukaStory == 2 || isYuukaStory == 3 ?
-        <video className="w-screen absolute z-30" autoPlay>
+        <video className="w-screen absolute z-30" autoPlay onEnded={ () => setIsYuukaStory(3) }>
           <source src={ YuukaStory2 } type="video/mp4" />
         </video>
        : null }
        {/* Yuuka Story Act 1-3 */}
       { isYuukaStory == 3 || isYuukaStory == 4 ?
-        <video className="w-screen absolute z-40" autoPlay>
+        <video className="w-screen absolute z-40" autoPlay onEnded={ () => setIsYuukaStory(4) }>
           <source src={ YuukaStory3 } type="video/mp4" />
         </video>
        : null }
        {/* Yuuka Story Act 1-4 */}
       { isYuukaStory == 4 ?
-        <video className="w-screen absolute z-50" autoPlay>
+        <video className="w-screen absolute z-50" autoPlay onEnded={ () => setTimeout(()=>{ setIsYuukaStory(0) }, 1000) }>
           <source src={ YuukaStory4 } type="video/mp4" />
         </video>
        : null }
