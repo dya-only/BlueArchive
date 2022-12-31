@@ -93,10 +93,10 @@ function Main() {
   const onYuukaStory = () => {
     onClickQuitMomo()
     setIsYuukaStory(1)  // Act 1 재생
-    setTimeout(()=>{ setIsYuukaStory(2) }, 74000)  // 1분 14초 후 Act 2 재생
-    setTimeout(()=>{ setIsYuukaStory(3) }, 120000)  // 1분 14초 + 
-    setTimeout(()=>{ setIsYuukaStory(4) }, 180700)
-    setTimeout(()=>{ setIsYuukaStory(0) }, 186700)
+    setTimeout(()=>{ setIsYuukaStory(2) }, 74150)
+    setTimeout(()=>{ setIsYuukaStory(3) }, 118150)
+    setTimeout(()=>{ setIsYuukaStory(4) }, 164500)
+    setTimeout(()=>{ setIsYuukaStory(0) }, 225100)
     // localStorage.setItem("YuukaStoryProgress", String(parseInt(JSON.parse(localStorage.getItem("YuukaStoryProgress") || '{}')) + 1))
   }
 
@@ -169,26 +169,26 @@ function Main() {
        : null }
 
       {/* Yuuka Story Act 1 */}
-      { isYuukaStory == 1 ?
-        <video className="w-screen absolute z-30" autoPlay>
+      { isYuukaStory == 1 || isYuukaStory == 2 ?
+        <video className="w-screen absolute z-20" autoPlay>
           <source src={ YuukaStory1 } type="video/mp4" />
         </video>
        : null }
       {/* Yuuka Story Act 1-2 */}
-      { isYuukaStory == 2 ?
+      { isYuukaStory == 2 || isYuukaStory == 3 ?
         <video className="w-screen absolute z-30" autoPlay>
           <source src={ YuukaStory2 } type="video/mp4" />
         </video>
        : null }
        {/* Yuuka Story Act 1-3 */}
-      { isYuukaStory == 3 ?
-        <video className="w-screen absolute z-30" autoPlay>
+      { isYuukaStory == 3 || isYuukaStory == 4 ?
+        <video className="w-screen absolute z-40" autoPlay>
           <source src={ YuukaStory3 } type="video/mp4" />
         </video>
        : null }
        {/* Yuuka Story Act 1-4 */}
       { isYuukaStory == 4 ?
-        <video className="w-screen absolute z-30" autoPlay>
+        <video className="w-screen absolute z-50" autoPlay>
           <source src={ YuukaStory4 } type="video/mp4" />
         </video>
        : null }
