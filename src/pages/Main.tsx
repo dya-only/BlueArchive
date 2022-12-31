@@ -36,7 +36,9 @@ import Yuuka_Memorial from "./midsummer_cat_yuuka_gym.mp4"
 import Azusa_Memorial from "./luminous_memory_azusa_mizugi.mp4"
 import Hoshino_Memorial from "./theme120_hoshino_mizugi.mp4"
 import YuukaStory1 from "./YuukaStory1.mp4"
-// import YuukaStory2 from "./YuukaStory2.mp4"
+import YuukaStory2 from "./YuukaStory2.mp4"
+import YuukaStory3 from "./YuukaStory3.mp4"
+import YuukaStory4 from "./YuukaStory4.mp4"
 
 import LuminousMemory from "./luminous_memory.mp3"
 import MidSummerCat from "./midsummer_cat.mp3"
@@ -90,11 +92,14 @@ function Main() {
 
   const onYuukaStory = () => {
     onClickQuitMomo()
-    setIsYuukaStory(1)
-    setTimeout(()=>{ setIsYuukaStory(0) }, 74700)
-    // setTimeout(()=>{ setIsYuukaStory(0); localStorage.setItem("YuukaStoryProgress", String(parseInt(JSON.parse(localStorage.getItem("YuukaStoryProgress") || '{}')) + 1)) }, 226800);
+    setIsYuukaStory(1)  // Act 1 재생
+    setTimeout(()=>{ setIsYuukaStory(2) }, 74000)  // 1분 14초 후 Act 2 재생
+    setTimeout(()=>{ setIsYuukaStory(3) }, 120000)  // 1분 14초 + 
+    setTimeout(()=>{ setIsYuukaStory(4) }, 180700)
+    setTimeout(()=>{ setIsYuukaStory(0) }, 186700)
+    // localStorage.setItem("YuukaStoryProgress", String(parseInt(JSON.parse(localStorage.getItem("YuukaStoryProgress") || '{}')) + 1))
   }
-  
+
   useEffect(() => {
 
     setMaxExp(1000)
@@ -170,11 +175,23 @@ function Main() {
         </video>
        : null }
       {/* Yuuka Story Act 1-2 */}
-      {/* { isYuukaStory == 2 ?
+      { isYuukaStory == 2 ?
         <video className="w-screen absolute z-30" autoPlay>
           <source src={ YuukaStory2 } type="video/mp4" />
         </video>
-       : null } */}
+       : null }
+       {/* Yuuka Story Act 1-3 */}
+      { isYuukaStory == 3 ?
+        <video className="w-screen absolute z-30" autoPlay>
+          <source src={ YuukaStory3 } type="video/mp4" />
+        </video>
+       : null }
+       {/* Yuuka Story Act 1-4 */}
+      { isYuukaStory == 4 ?
+        <video className="w-screen absolute z-30" autoPlay>
+          <source src={ YuukaStory4 } type="video/mp4" />
+        </video>
+       : null }
 
       {/* MoMo Talk */}
       { isMomoTalk ?
