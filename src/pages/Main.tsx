@@ -39,7 +39,9 @@ import YuukaStory1 from "./Yuuka/YuukaStory1.mp4"
 import YuukaStory2 from "./Yuuka/YuukaStory2.mp4"
 import YuukaStory3 from "./Yuuka/YuukaStory3.mp4"
 import YuukaStory4 from "./Yuuka/YuukaStory4.mp4"
+import LoadingAct from './Loading/BlueArchiveLoading.mp4'
 
+import ConstantModerato from './Loading/ConstantModerato.mp3'
 import LuminousMemory from "./luminous_memory.mp3"
 import MidSummerCat from "./midsummer_cat.mp3"
 import Theme120 from "./theme_120.mp3"
@@ -53,6 +55,7 @@ function Main() {
   const [isMomoTalk, setIsMomoTalk] = useState(false)
   const [whoChat, setWhoChat] = useState("")
   const [isYuukaStory, setIsYuukaStory] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
   
   const Characters = ["Yuuka", "Azusa", "Hoshino"]
 
@@ -75,6 +78,7 @@ function Main() {
 
   const SelectMemorial = (name: String) => {
     setMemorial(String(name))
+    localStorage.setItem("MemorialSelection", String(name))
   }
 
   const SelectChat = (name: String) => {
@@ -92,36 +96,46 @@ function Main() {
 
   const onYuukaStory = () => {
     onClickQuitMomo()
-    setIsYuukaStory(1)  // Act 1 재생
-    // setTimeout(()=>{ setIsYuukaStory(2) }, 74150)
-    // setTimeout(()=>{ setIsYuukaStory(3) }, 118150)
-    // setTimeout(()=>{ setIsYuukaStory(4) }, 164300)
-    // setTimeout(()=>{ setIsYuukaStory(0) }, 225100)
+    setIsYuukaStory(1)
     // localStorage.setItem("YuukaStoryProgress", String(parseInt(JSON.parse(localStorage.getItem("YuukaStoryProgress") || '{}')) + 1))
   }
 
   useEffect(() => {
 
+    setMemorial("Loading")
     setMaxExp(1000)
     setExpProgress(612)
+    
+    if (localStorage.getItem("YuukaStoryProgress") == null) localStorage.setItem("YuukaStoryProgress", "0")
+    if (localStorage.getItem("MemorialSelection") == null) localStorage.setItem("MemorialSelection", "Yuuka")
+    console.log(localStorage.getItem("YuukaStoryProgress"))
+    console.log(localStorage.getItem("MemorialSelection"))
 
-    if (sessionStorage.getItem("isPlaying") == "true") {
-      setIsMusic(true)
-    } else {
-      setIsMusic(false)
+    if (!isLoading) {
+      SelectMemorial(String(localStorage.getItem("MemorialSelection")))
     }
 
-    // let rand = Math.floor(Math.random() * 2)
-    let rand = 0
-
-    setMemorial(Characters[rand])
-
-    if (localStorage.getItem("YuukaStoryProgress") == null) localStorage.setItem("YuukaStoryProgress", "0")
-    console.log(localStorage.getItem("YuukaStoryProgress"))
   }, [])
   
   return (
     <div className="main bg-cover font-molu-bold overflow-x-hidden">
+
+      {/* <Loading /> */}
+      { memorial == "Loading" ?
+        <button className='w-screen h-screen z-50 cursor-default fixed flex justify-center items-end' onClick={ ()=>{ setTimeout(()=>{ setIsLoading(false) }, 2000); setTimeout(()=>{ setMemorial(String(localStorage.getItem("MemorialSelection"))) }, 2000) } }>
+          <video className="h-screen object-cover z-40" muted autoPlay loop>
+            <source src={ LoadingAct } type="video/mp4" />
+          </video>
+
+          <div className="data border-text font-molu z-50 fixed mb-4">게임 데이터를 초기화 중입니다 ··· [Data Initialize...99%]</div>
+        </button>
+       : null }
+
+      { memorial == "Loading" ?
+        <audio loop autoPlay>
+          <source src={ ConstantModerato } type="audio/mp3" />
+        </audio>
+       : null }
 
       {/* Music Button */}
       { JSON.parse(isMusic.toString()) == false ?

@@ -19,7 +19,7 @@ function Students() {
         <div className="contain w-[92%] h-[87%] bg-[#65A0C2] rounded-t-md flex flex-col justify-center items-center">
           <div className="title w-full h-[85px] bg-[#85BAD3] flex items-center pl-10 rounded-t-md">
             <img className='w-13' src={ student_icon }></img>
-            <div className="window-text font-molu-bold text-4xl ml-4 text-[#334155]">학생 리스트</div>
+            <div className="border-text font-molu-bold text-4xl ml-4 text-[#334155]">학생 리스트</div>
           </div>
 
           <div className="cards w-[98%] h-[90%] bg-[#F2FEFF] rounded-t-md mt-4 ">
