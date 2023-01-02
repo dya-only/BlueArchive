@@ -31,6 +31,7 @@ import momo_latest_btn from "../assets/momo_latest_btn.png"
 import momo_down_btn from "../assets/momo_down_btn.png"
 import yuuka_story_btn from "../assets/yuuka_story_btn.png"
 import yuuka_profile from "../assets/yuuka_profile.png"
+import TouchToStart from "../assets/touch_to_start.png"
 
 import Yuuka_Memorial from "./midsummer_cat_yuuka_gym.mp4"
 import Azusa_Memorial from "./luminous_memory_azusa_mizugi.mp4"
@@ -56,6 +57,9 @@ function Main() {
   const [whoChat, setWhoChat] = useState("")
   const [isYuukaStory, setIsYuukaStory] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [init, setInit] = useState(0)
+  let _init = 0
+  const [nowEndLoading, setNowEndLoading] = useState(false)
   
   const Characters = ["Yuuka", "Azusa", "Hoshino"]
 
@@ -63,9 +67,30 @@ function Main() {
 
   const StyledProgressBar = styled.div` width: ${ Math.floor(expProgress / maxExp * 100) }%; height: 5px; background-color: #59eefb`
 
+  const onTouch = () => {
+    if (init == 100) {
+      setTimeout(() => { setIsLoading(false); setMemorial(String(localStorage.getItem("MemorialSelection"))) }, 3000)
+      console.log("end")
+    }
+  }
+
+  const loading = () => {
+    if (_init === 100) {
+      setTimeout(() => { setNowEndLoading(true) }, 1000)
+      return;
+    }
+    _init++
+    setInit(_init)
+  }
+
   const onMusic = () => {
     setIsMusic(true)
     sessionStorage.setItem("isPlaying", "true")
+
+    setInterval(() => {
+      loading()
+    }, Math.floor(Math.random() * 100) + 10)
+
   }
 
   const onClickQuit = () => {
@@ -114,20 +139,34 @@ function Main() {
     if (!isLoading) {
       SelectMemorial(String(localStorage.getItem("MemorialSelection")))
     }
-
   }, [])
   
   return (
     <div className="main bg-cover font-molu-bold overflow-x-hidden">
-
       {/* <Loading /> */}
       { memorial == "Loading" ?
-        <button className='w-screen h-screen z-50 cursor-default fixed flex justify-center items-end' onClick={ ()=>{ setTimeout(()=>{ setIsLoading(false) }, 2000); setTimeout(()=>{ setMemorial(String(localStorage.getItem("MemorialSelection"))) }, 2000) } }>
+        <button className='w-screen h-screen z-50 cursor-default fixed flex justify-center items-end' onClick={ ()=>{ onTouch() } }>
           <video className="h-screen object-cover z-40" muted autoPlay loop>
             <source src={ LoadingAct } type="video/mp4" />
           </video>
 
-          <div className="data border-text font-molu z-50 fixed mb-4">게임 데이터를 초기화 중입니다 ··· [Data Initialize...99%]</div>
+          { nowEndLoading == false ?
+          <div className="fixed mb-7 left-[3%] transform translate-x-1/2 translate-y-1/2 z-50">
+            <div className="border-t-transparent border-solid animate-spin  rounded-full border-[#00b2fe] border-[6px] h-6 w-6"></div>
+          </div>
+          : null }
+
+          { nowEndLoading == false ?
+            <div className="data border-text font-molu z-50 fixed mb-4">게임 데이터를 초기화 중입니다 ··· [Data Initialize...{ init }%]</div>
+          : null }
+
+          { nowEndLoading == true ?
+            <div className="data border-text font-molu z-50 fixed mb-12">C 2021 NEXON Korea Corp. & NEXON Games Co., Ltd. All Rights Reserved.</div>
+          : null }
+
+          { nowEndLoading == true ?
+            <img className="touch_to_start w-[500px] opacity-75 rounded-sm z-50 fixed mb-28 transition ease-in-out duration-100 animate-pulse" src={ TouchToStart } />
+          : null }
         </button>
        : null }
 
