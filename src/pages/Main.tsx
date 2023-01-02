@@ -70,6 +70,7 @@ function Main() {
   const onTouch = () => {
     if (init == 100) {
       setTimeout(() => { setIsLoading(false); setMemorial(String(localStorage.getItem("MemorialSelection"))) }, 3000)
+      sessionStorage.setItem("isAlreadyLoading", "true")
       console.log("end")
     }
   }
@@ -127,14 +128,24 @@ function Main() {
 
   useEffect(() => {
 
-    setMemorial("Loading")
+    if (localStorage.getItem("YuukaStoryProgress") == null) localStorage.setItem("YuukaStoryProgress", "0")
+    if (localStorage.getItem("MemorialSelection") == null) localStorage.setItem("MemorialSelection", "Yuuka")
+    if (sessionStorage.getItem("isAlreadyLoading") == null) sessionStorage.setItem("isAlreadyLoading", "false")
+    if (sessionStorage.getItem("isPlaying") == null) sessionStorage.setItem("isPlaying", "false")
+
+    if (sessionStorage.getItem("isAlreadyLoading") == "false") { ("Loading") }
+    else if (sessionStorage.getItem("isAlreadyLoading") == "true") { setMemorial(String(localStorage.getItem("MemorialSelection"))) }
+    if (sessionStorage.getItem("isAlreadyLoading") == "false") { setMemorial("Loading") }
+    else if (sessionStorage.getItem("isAlreadyLoading") == "true") { setMemorial(String(localStorage.getItem("MemorialSelection"))) }
+    if (sessionStorage.getItem("isPlaying") == "false") { setIsMusic(false) }
+    else if (sessionStorage.getItem("isPlaying") == "true") { setIsMusic(true) }
+
     setMaxExp(1000)
     setExpProgress(612)
     
-    if (localStorage.getItem("YuukaStoryProgress") == null) localStorage.setItem("YuukaStoryProgress", "0")
-    if (localStorage.getItem("MemorialSelection") == null) localStorage.setItem("MemorialSelection", "Yuuka")
     console.log(localStorage.getItem("YuukaStoryProgress"))
     console.log(localStorage.getItem("MemorialSelection"))
+    console.log(sessionStorage.getItem("isAlreadyLoading"))
 
     if (!isLoading) {
       SelectMemorial(String(localStorage.getItem("MemorialSelection")))
