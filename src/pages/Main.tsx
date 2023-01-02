@@ -170,7 +170,7 @@ function Main() {
         </button>
        : null }
 
-      { memorial == "Loading" ?
+      { memorial == "Loading" && isMusic == true ?
         <audio loop autoPlay>
           <source src={ ConstantModerato } type="audio/mp3" />
         </audio>
