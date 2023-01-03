@@ -27,6 +27,7 @@ import azusa_mizugi from "../assets/azusa_mizugi.png"
 import hoshino_mizugi from "../assets/hoshino_mizugi.png"
 import momo_logo from "../assets/momo_logo.png"
 import talk_logo from "../assets/talk_logo.png"
+import student_logo from "../assets/momo_student_logo.png"
 import momo_latest_btn from "../assets/momo_latest_btn.png"
 import momo_down_btn from "../assets/momo_down_btn.png"
 import yuuka_story_btn from "../assets/yuuka_story_btn.png"
@@ -54,6 +55,7 @@ function Main() {
   const [expProgress, setExpProgress] = useState(0)
   const [maxExp, setMaxExp] = useState(0)
   const [isMomoTalk, setIsMomoTalk] = useState(false)
+  const [momoTalkNow, setMomoTalkNow] = useState(0)
   const [whoChat, setWhoChat] = useState("")
   const [isYuukaStory, setIsYuukaStory] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -64,6 +66,7 @@ function Main() {
   const Characters = ["Yuuka", "Azusa", "Hoshino"]
 
   const Yuuka_Chats = ["안녕하세요, 선생님. 유우카입니다.", "저 기억하고 계시죠?", "*아아. 당연하지.", "뭐, 그럼 다행이구요.", "선생님의 연락처를 받아두길 잘했네요.", "모모톡으로 연락드린 건 다름이 아니라······.", "지난번 샬레 탈환 당시 사용했던 탄환의 경비 처리가 늦어지고 있어서요.", "경비는 언제쯤 청구받을 수 있을까요?", "*이쪽에서 처리해야 하는 거였어······?", "물론이죠. 탄환도 공짜는 아니니까요.", "청구서를 작성해서 보내주시면 총학생회에서", "대신 잔금을 치러줄 거에요.", "청구서 양식이라면 밀레니엄 학원에서 쓰는 것이 있어요.", "다음에 샬레를 방문할 때 가져다드릴게요.", "*도와줘서 고마워.", "어려운 일도 아닌걸요.", "그럼 좋은 하루 되세요.", "&"]
+  const Yuuka_Chats2 = ["선생님! 어째서 샬레의 경비 청구서에 장난감 영수증이 포함되어 있는 건가요?", "장난감 구입은 공무와는 상관없는 일이라고요!", "*하지만 일을 하는 데 꼭 필요한 물건이었는걸······.", "안 돼요! 선생님이시면 선생님답게 학생들에게 모범을 보이셔야죠!", "이 엉망인 청구서는 제가 대신 작성해 둘 테니 그렇게 아세요!", "설마······ 청구서가 작성하기 귀찮아서 일부러 엉망으로 쓴 건 아니시겠죠?", "선ㅡ생ㅡ님ㅡ!!"]
 
   const StyledProgressBar = styled.div` width: ${ Math.floor(expProgress / maxExp * 100) }%; height: 5px; background-color: #59eefb`
 
@@ -95,6 +98,7 @@ function Main() {
   }
 
   const onClickQuit = () => {
+    setMomoTalkNow(0)
     setIsSelectingMemorial(false)
   }
 
@@ -172,7 +176,7 @@ function Main() {
           : null }
 
           { nowEndLoading == true ?
-            <div className="data border-text font-molu z-50 fixed mb-12">C 2021 NEXON Korea Corp. & NEXON Games Co., Ltd. All Rights Reserved.</div>
+            <div className="data border-text font-molu z-50 fixed mb-12">© 2021 NEXON Korea Corp. & NEXON Games Co., Ltd. All Rights Reserved.</div>
           : null }
 
           { nowEndLoading == true ?
@@ -190,8 +194,8 @@ function Main() {
       {/* Music Button */}
       { JSON.parse(isMusic.toString()) == false ?
         <div className="absolute w-full h-full backdrop-brightness-[0.2] flex items-center justify-center z-50 drop-shadow-2xl">
-          <div className="flex flex-col justify-center items-center w-[400px] h-48 bg-white rounded-2xl">
-            <div className="font-molu text-xl mb-8">사운드 재생을 위해 확인 버튼을 눌러주세요.<br/>※전체화면을 사용해주세요.</div>
+          <div className="flex flex-col justify-center items-center w-[600px] h-[300px] bg-white rounded-2xl">
+            <div className="font-molu text-xl mb-8">※전체화면을 사용해주세요.<br/>사운드 재생을 위해 확인 버튼을 눌러주세요.<br/><br/>영상의 용량 문제로 인해 재생 중 약간의 지연이 생길 수 있습니다.</div>
             <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg' onClick={onMusic}>확인</button>
           </div>
         </div>
@@ -252,7 +256,7 @@ function Main() {
        : null }
        {/* Yuuka Story Act 1-4 */}
       { isYuukaStory == 4 ?
-        <video className="w-screen absolute z-50" autoPlay onEnded={ () => setTimeout(()=>{ setIsYuukaStory(0) }, 1000) }>
+        <video className="w-screen absolute z-50" autoPlay onEnded={ () => setTimeout(()=>{ setIsYuukaStory(0); localStorage.setItem("YuukaStoryProgress", "1") }, 1000) }>
           <source src={ YuukaStory4 } type="video/mp4" />
         </video>
        : null }
@@ -271,36 +275,47 @@ function Main() {
             </button>
           </div>
           <div className=" flex justify-start w-[1100px] h-[550px] bg-white rounded-b-xl">
-            
+          
             <div className="left-bar bg-[#4c5b70] w-[110px] h-[550px] [990px] rounded-bl-xl">
-              <div className="square w-[110px] h-[105px] bg-[#647789] flex justify-center items-center">
-                <img className='w-[55px]' src={ talk_logo } />
-              </div>
+            <button className='chat_btn' onClick={ ()=>setMomoTalkNow(0) }>
+                <div className="square w-[110px] h-[105px] flex justify-center items-center hover:bg-[#647789] opacity-50 hover:opacity-100">
+                  <img className='w-[50px]' src={ student_logo } />
+                </div>
+              </button>
+              <button className='chat_btn' onClick={ ()=>setMomoTalkNow(1) }>
+                <div className="square w-[110px] h-[105px] flex justify-center items-center hover:bg-[#647789] opacity-50 hover:opacity-100">
+                  <img className='w-[55px]' src={ talk_logo } />
+                </div>
+              </button>
             </div>
 
-            <div className="chat-list w-[500px] h-[550px] bg-[#f3f7f8] border-r-[1px] border-zinc-200">
-              <div className="top-bar w-[500px] h-[70px] flex items-center justify-around ml-2">
-                <div className="text text-2xl font-molu-bold text-[#373a3d] pt-1">안 읽은 메시지(0)</div>
-                <img className='h-[70px] mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_latest_btn } />
-                <img className='h-[70px] -ml-10 mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_down_btn } />
-              </div>
-              <div className="line-contain w-[500px] flex justify-center">
-                <div className="line w-[460px] h-[1.5px] bg-zinc-300"></div>
-              </div>
-              <div className="chats mt-2">
+            { momoTalkNow == 1 ?
+              <div className="chat-list w-[500px] h-[550px] bg-[#f3f7f8] border-r-[1px] border-zinc-200">
+                <div className="top-bar w-[500px] h-[70px] flex items-center justify-around ml-2">
+                  <div className="text text-2xl font-molu-bold text-[#373a3d] pt-1">안 읽은 메시지(0)</div>
+                  <img className='h-[70px] mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_latest_btn } />
+                  <img className='h-[70px] -ml-10 mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_down_btn } />
+                </div>
+                <div className="line-contain w-[500px] flex justify-center">
+                  <div className="line w-[460px] h-[1.5px] bg-zinc-300"></div>
+                </div>
+                <div className="chats mt-2">
 
-                <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Yuuka") } }>
-                  <img className='rounded-full w-[68px] h-[68px] ml-4' src={ yuuka_profile } />
-                  <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
-                    <div className="name font-molu-bold text-2xl text-[#373a3d]">유우카</div>
-                    <div className="last font-molu-bold text-[22px] text-[#898c94] w-[350px] truncate flex">{ Yuuka_Chats[Yuuka_Chats.length-1] !== "&" ? Yuuka_Chats[Yuuka_Chats.length-1] : "유우카의 인연 스토리로" }</div>
-                  </div>
-                </button>
+                  {/* Hayase Yuuka */}
+                  <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Yuuka") } }>
+                    <img className='rounded-full w-[68px] h-[68px] ml-4' src={ yuuka_profile } />
+                    <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
+                      <div className="name font-molu-bold text-2xl text-[#373a3d]">유우카</div>
+                      <div className="last font-molu-bold text-[22px] text-[#898c94] w-[350px] truncate flex">{ Yuuka_Chats[Yuuka_Chats.length-1] !== "&" ? Yuuka_Chats[Yuuka_Chats.length-1] : "유우카의 인연 스토리로" }</div>
+                    </div>
+                  </button>
 
+                </div>
               </div>
-            </div>
+               : null }
+
+            {/* Hayase Yuuka */}
             <div className="chat-real w-[490px] h-[534px] rounded-br-xl bg-white pt-4 overflow-y-auto overflow-x-hidden">
-
               { whoChat == "Yuuka" ?
                 <div className="w-[500px] h-[85px] flex justify-start items-center">
                   <img className='rounded-full w-[68px] h-[68px] ml-4' src={ yuuka_profile } />
@@ -310,7 +325,7 @@ function Main() {
                 </div>
                : null }
 
-              { whoChat == "Yuuka" ?
+              { whoChat == "Yuuka" && parseInt(String(localStorage.getItem("YuukaStoryProgress"))) >= 0 ?
                 ( Yuuka_Chats.map((i) => {
                   if (i.split('')[0] == "*") {
                     return ( <div className='flex justify-end'>
@@ -327,6 +342,24 @@ function Main() {
                   }
                 }) )
                  : null }
+
+              { whoChat == "Yuuka" && parseInt(String(localStorage.getItem("YuukaStoryProgress"))) >= 1 ?
+                ( Yuuka_Chats2.map((i) => {
+                  if (i.split('')[0] == "*") {
+                    return ( <div className='flex justify-end'>
+                      <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl'>{ i.substring(1) }</div>
+                    </div> )
+                  } else if (i.split('')[0] == "&") {
+                    return ( <button className='flex justify-end' onClick={ onYuukaStory }>
+                      <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                    </button> )
+                  } else {
+                    return( <div className='flex justify-start'>
+                      <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl'>{ i }</div>
+                    </div> )
+                  }
+                }) )
+               : null }
             </div>
 
           </div>
