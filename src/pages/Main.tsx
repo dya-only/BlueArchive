@@ -26,6 +26,10 @@ import yuuka_gym from "../assets/yuuka_gym.png"
 import azusa_mizugi from "../assets/azusa_mizugi.png"
 import hoshino_mizugi from "../assets/hoshino_mizugi.png"
 import atsuko from "../assets/atsuko.png"
+import azusa from "../assets/azusa.png"
+import iori from "../assets/iori.png"
+import iroha from "../assets/iroha.png"
+import izuna from "../assets/izuna.png"
 import momo_logo from "../assets/momo_logo.png"
 import talk_logo from "../assets/talk_logo.png"
 import student_logo from "../assets/momo_student_logo.png"
@@ -61,15 +65,16 @@ function Main() {
   const [isMomoTalk, setIsMomoTalk] = useState(false)
   const [momoTalkNow, setMomoTalkNow] = useState(0)
   const [whoChat, setWhoChat] = useState("")
+  const [whoProfile, setWhoProfile] = useState("")
   const [isYuukaStory, setIsYuukaStory] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [init, setInit] = useState(0)
   let _init = 0
   const [nowEndLoading, setNowEndLoading] = useState(false)
   
-  const Characters = [{"name": "유우카", "text": "계산대로야"}, {"name": "아즈사", "text": "et omnia vanitas"}
-    , {"name": "아츠코", "text": "요즘은 꽃말을 배우고 있는 중"}, {"name": "이오리", "text": "수상한 사람을 보면 즉시 신고"}
-    , {"name": "이로하", "text": "독서 중입니다. 찾지 말아주세요."}, {"name": "이즈나", "text": "이즈나, 힘낼게요! 닌닌!"}]
+  const Characters = [{"name": "유우카", "text": "계산대로야", "profile": yuuka_profile}, {"name": "아즈사", "text": "et omnia vanitas", "profile": azusa}
+    , {"name": "아츠코", "text": "요즘은 꽃말을 배우고 있는 중", "profile": atsuko}, {"name": "이오리", "text": "수상한 사람을 보면 즉시 신고", "profile": iori}
+    , {"name": "이로하", "text": "독서 중입니다. 찾지 말아주세요.", "profile": iroha}, {"name": "이즈나", "text": "이즈나, 힘낼게요! 닌닌!", "profile": izuna}]
 
   const Yuuka_Chats = ["안녕하세요, 선생님. 유우카입니다.", "저 기억하고 계시죠?", "*아아. 당연하지.", "뭐, 그럼 다행이구요.", "선생님의 연락처를 받아두길 잘했네요.", "모모톡으로 연락드린 건 다름이 아니라······.", "지난번 샬레 탈환 당시 사용했던 탄환의 경비 처리가 늦어지고 있어서요.", "경비는 언제쯤 청구받을 수 있을까요?", "*이쪽에서 처리해야 하는 거였어······?", "물론이죠. 탄환도 공짜는 아니니까요.", "청구서를 작성해서 보내주시면 총학생회에서", "대신 잔금을 치러줄 거에요.", "청구서 양식이라면 밀레니엄 학원에서 쓰는 것이 있어요.", "다음에 샬레를 방문할 때 가져다드릴게요.", "*도와줘서 고마워.", "어려운 일도 아닌걸요.", "그럼 좋은 하루 되세요.", "&"]
   const Yuuka_Chats2 = ["선생님! 어째서 샬레의 경비 청구서에 장난감 영수증이 포함되어 있는 건가요?", "장난감 구입은 공무와는 상관없는 일이라고요!", "*하지만 일을 하는 데 꼭 필요한 물건이었는걸······.", "안 돼요! 선생님이시면 선생님답게 학생들에게 모범을 보이셔야죠!", "이 엉망인 청구서는 제가 대신 작성해 둘 테니 그렇게 아세요!", "설마······ 청구서가 작성하기 귀찮아서 일부러 엉망으로 쓴 건 아니시겠죠?", "선ㅡ생ㅡ님ㅡ!!"]
@@ -121,9 +126,15 @@ function Main() {
     setWhoChat(String(name))
   }
 
+  const SelectStudent = (name: string) => {
+    setWhoProfile(String(name))
+    console.log(Characters[Characters.findIndex(e => e.name == whoProfile)].profile)
+  }
+
   const onClickQuitMomo = () => {
     setIsMomoTalk(false)
     setWhoChat("")
+    setWhoProfile("")
   }
 
   const onClickMomo = () => {
@@ -273,7 +284,7 @@ function Main() {
 
       {/* MoMo Talk */}
       { isMomoTalk ?
-      <div className="fixed w-full h-full backdrop-brightness-[0.8] flex items-center justify-center z-50 drop-shadow-2xl">
+      <div className="fixed w-full h-full backdrop-brightness-[0.4] flex items-center justify-center z-50 drop-shadow-2xl">
         <div className="flex flex-col justify-center items-center">
           <div className="window-title w-[1100px] h-[60px] bg-[#fa91a5] rounded-t-xl flex justify-between items-center">
             <div className='flex justify-center items-center'>
@@ -300,30 +311,52 @@ function Main() {
             </div>
 
             { momoTalkNow == 0 ?
-              <div className="chat-list w-[500px] h-[550px] bg-[#f3f7f8] border-r-[1px] border-zinc-200">
-              <div className="top-bar w-[500px] h-[70px] flex items-center justify-around ml-2">
-                <div className="text text-2xl font-molu-bold text-[#373a3d] pt-1">학생(36)</div>
-                <img className='h-[70px] mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_name_btn } />
-                <img className='h-[70px] -ml-10 mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_down_btn } />
-              </div>
-              <div className="line-contain w-[500px] flex justify-center">
-                <div className="line w-[460px] h-[1.5px] bg-zinc-300"></div>
-              </div>
-              <div className="students mt-2">
-                { Characters.map((i) => {
-                  return ( 
-                    <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Yuuka") } }>
-                      <img className='rounded-full w-[68px] h-[68px] ml-4' src={ yuuka_profile } />
-                      <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
-                        <div className="name font-molu-bold text-2xl text-[#373a3d]">{ i.name }</div>
-                        <div className="last font-molu-bold text-[22px] text-[#898c94] w-[350px] truncate flex">{ i.text }</div>
-                      </div>
-                    </button>
-                   )
-                }) }
+              <div className='flex justify-center items-center'>
+                <div className="chat-list w-[500px] h-[550px] bg-[#f3f7f8] border-r-[1px] border-zinc-200">
+                  <div className="top-bar w-[500px] h-[70px] flex items-center justify-around ml-2">
+                    <div className="text text-2xl font-molu-bold text-[#373a3d] pt-1">학생({ Characters.length })</div>
+                    <img className='h-[70px] mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_name_btn } />
+                    <img className='h-[70px] -ml-10 mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_down_btn } />
+                  </div>
+                  <div className="line-contain w-[500px] flex justify-center">
+                    <div className="line w-[460px] h-[1.5px] bg-zinc-300"></div>
+                  </div>
+                  <div className="students mt-2 h-[460px] w-[500px] overflow-y-auto overflow-x-hidden">
+                    { Characters.map((i) => {
+                      return ( 
+                        <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectStudent(i.name) } }>
+                          <img className='rounded-full object-cover w-[68px] h-[68px] ml-4' src={ i.profile } />
+                          <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
+                            <div className="name font-molu-bold text-2xl text-[#373a3d]">{ i.name }</div>
+                            <div className="last font-molu-bold text-[22px] text-[#898c94] w-[350px] truncate flex">{ i.text }</div>
+                          </div>
+                        </button>
+                      )
+                    }) }
 
+                  </div>
+                </div>
+
+                <div className="chat-real w-[490px] h-[534px] rounded-br-xl bg-white pt-4 overflow-y-auto overflow-x-hidden">
+                  { whoProfile !== "" ?
+                    <div className="student-profile flex flex-col justify-center items-center w-[500] h-[560] bg-white">
+                      <div className='img-profile flex items-center flex-col'>
+                        <img className='rounded-full object-cover w-[125px] h-[125px]' src={ String(Characters[Characters.findIndex(e => e.name == whoProfile)].profile) } />
+                        <div className="name text-[#4c5052] text-[24px] mt-1">{ String(Characters[Characters.findIndex(e => e.name == whoProfile)].name) }</div>
+                        <div className="status text-[#818488] text-[22px] -mt-2 font-molu">{ String(Characters[Characters.findIndex(e => e.name == whoProfile)].text) }</div>
+                      </div>
+                      <div className="table flex justify-center">
+                        <div className="rank-bonus mt-2">
+                          <div className="in-nav rounded-t-xl text-[#4175a0] text-2xl flex justify-center p-[7px] bg-[#daedfc] w-[460px] border-2 border-[#c5d0d5] border-b-[#daedfc]">인연 랭크 보너스</div>
+                          <div className="in-nav text-[#dbdbdb] text-xl font-molu flex justify-center items-center p-[7px] bg-white h-[110px] w-[460px] border-x-2 border-[#c5d0d5]">보너스 없음</div>
+                          <div className="in-nav text-[#4175a0] text-2xl flex justify-center p-[7px] bg-[#daedfc] w-[460px] border-x-2 border-[#c5d0d5]">보너스 대상</div>
+                          <div className="in-nav text-[#dbdbdb] text-xl font-molu flex justify-center items-center p-[7px] bg-white h-[110px] w-[460px] border-2 border-[#c5d0d5] border-t-[#daedfc] rounded-b-xl">추가 대상 없음</div>
+                        </div>
+                      </div>
+                    </div>
+                   : null }
+                </div>
               </div>
-            </div>
              : null }
 
             { momoTalkNow == 1 ?
