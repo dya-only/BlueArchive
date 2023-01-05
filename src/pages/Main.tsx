@@ -58,6 +58,7 @@ import MidnightTrip from "./MidnightTrip.mp3"
 
 function Main() {
   const [memorial, setMemorial] = useState("")
+  const [level, setLevel] = useState(47)
   const [isMusic, setIsMusic] = useState(false)
   const [isSelectingMemorial, setIsSelectingMemorial] = useState(false)
   const [expProgress, setExpProgress] = useState(0)
@@ -72,24 +73,24 @@ function Main() {
   let _init = 0
   const [nowEndLoading, setNowEndLoading] = useState(false)
   
-  const Characters = [{"name": "노노미", "text": "즐거운 하루 되세요!", "profile": "https://static.miraheze.org/bluearchivewiki/a/ad/Nonomi.png"}, {"name": "노노미(수영복)", "text": " ", "profile": "https://static.miraheze.org/bluearchivewiki/9/98/Nonomi_%28Swimsuit%29.png"}
-  , {"name": "마리", "text": "늘 평안하세요", "profile": "https://static.miraheze.org/bluearchivewiki/4/4f/Mari.png"}, {"name": "마리(체육복)", "text": "평화로운 축제가 되기를 기원합니다", "profile": "https://static.miraheze.org/bluearchivewiki/8/88/Mari_%28Sportswear%29.png"}
-  , {"name": "마키", "text": "그래피티, 너무 좋아!", "profile": "https://static.miraheze.org/bluearchivewiki/2/21/Maki.png"}, {"name": "모모이", "text": "게임 외길 인생", "profile": "https://static.miraheze.org/bluearchivewiki/1/18/Momoi.png"}
-  , {"name": "무츠키", "text": "심심해~", "profile": "https://static.miraheze.org/bluearchivewiki/0/0b/Mutsuki.png"}, {"name": "무츠키(새해)", "text": "올해는 더 재밌을 거야~!", "profile": "https://static.miraheze.org/bluearchivewiki/c/c2/Mutsuki_%28New_Year%29.png"}
-  , {"name": "미도리", "text": "재미있는 게임 추천받아요.", "profile": "https://static.miraheze.org/bluearchivewiki/e/ee/Midori.png"}
-  , {"name": "미유", "text": "좋은 날은 이제 다 끝이에요……", "profile": "https://static.miraheze.org/bluearchivewiki/a/ac/Miyu.png"}, {"name": "사야", "text": "나님을 칭찬해라!", "profile": "https://static.miraheze.org/bluearchivewiki/c/ce/Saya.png"}
-  , {"name": "사야(사복)", "text": "나님은 뭐든지 알고 있다고!", "profile": "https://static.miraheze.org/bluearchivewiki/e/e2/Saya_%28Casual%29.png"}, {"name": "사키", "text": "말보다 행동으로", "profile": "https://static.miraheze.org/bluearchivewiki/d/d0/Saki.png"}
-  , {"name": "세리나", "text": "몸이 아프면 언제든 연락주세요", "profile": "https://static.miraheze.org/bluearchivewiki/4/41/Serina.png"}, {"name": "세리나(크리스마스)", "text": "크리스마스를 맞아, 행복을 모두에게.", "profile": "https://static.miraheze.org/bluearchivewiki/1/19/Serina_%28Christmas%29.png"}
-  , {"name": "세리카", "text": "대책위원회 쿠로미 세리카입니다", "profile": "https://static.miraheze.org/bluearchivewiki/c/c8/Serika.png"}, {"name": "세리카(새해)", "text": "모두 새해 복 많이 받으세요", "profile": "https://static.miraheze.org/bluearchivewiki/6/61/Serika_%28New_Year%29.png"}
-  , {"name": "슌", "text": "천사들과 함께하는 삶", "profile": "https://static.miraheze.org/bluearchivewiki/1/17/Shun.png"}, {"name": "슌(어린이)", "text": "탕후루가 먹고 싶네요~", "profile": "https://static.miraheze.org/bluearchivewiki/5/53/Shun_%28Kid%29.png"}
-  , {"name": "스즈미", "text": "오늘도 평안한 하루를", "profile": "https://static.miraheze.org/bluearchivewiki/0/07/Suzumi.png"}, {"name": "시미코", "text": "책은 대출기간 내에 반납해주세요", "profile": "https://static.miraheze.org/bluearchivewiki/f/f4/Shimiko.png"}
-  , {"name": "시즈코", "text": "백야당 절찬 영업중!", "profile": "https://static.miraheze.org/bluearchivewiki/7/77/Shizuko.png"}, {"name": "아리스", "text": "밀레니엄 게임개발부 아리스입니다.", "profile": "https://static.miraheze.org/bluearchivewiki/0/0f/Arisu.png"}
-  , {"name": "아스나", "text": "최고의 봉사를 당신에게!", "profile": "https://static.miraheze.org/bluearchivewiki/9/9f/Asuna.png"}, {"name": "아스나(바니걸)", "text": "최고의 즐거움을 당신에게!", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Asuna_%28Bunny_Girl%29.png"}
-  , {"name": "아야네", "text": "상식이 존중받는 동아리, 대책위원회입니다", "profile": "https://static.miraheze.org/bluearchivewiki/a/a7/Ayane.png"}, {"name": "아야네(수영복)", "text": " ", "profile": "https://static.miraheze.org/bluearchivewiki/f/f6/Ayane_%28Swimsuit%29.png"}
-  , {"name": "아이리", "text": "민트초코는 정말 최고야!", "profile": "https://static.miraheze.org/bluearchivewiki/9/96/Airi.png"}, {"name": "아즈사", "text": "et omnia vanitas", "profile": "https://static.miraheze.org/bluearchivewiki/8/86/Azusa.png"}
-  , {"name": "아즈사(수영복)", "text": "A brevis paradisum", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Azusa_%28Swimsuit%29.png"}
-  , {"name": "아츠코", "text": "요즘은 꽃말을 배우고 있는 중", "profile": "https://static.miraheze.org/bluearchivewiki/c/c7/Atsuko.png"}, {"name": "아카네", "text": "따뜻한 홍차 한 잔의 여유", "profile": "https://static.miraheze.org/bluearchivewiki/a/aa/Akane.png"}
-  , {"name": "아카네(바니걸)", "text": "", "profile": "https://static.miraheze.org/bluearchivewiki/9/99/Akane_%28Bunny_Girl%29.png"}]
+  const Characters = [{"name": "노노미", "text": "즐거운 하루 되세요!", "profile": "https://static.miraheze.org/bluearchivewiki/a/ad/Nonomi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/3f/Nonomi_full.png"}, {"name": "노노미(수영복)", "text": " ", "profile": "https://static.miraheze.org/bluearchivewiki/9/98/Nonomi_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/01/Nonomi_%28Swimsuit%29_full.png"}
+  , {"name": "마리", "text": "늘 평안하세요", "profile": "https://static.miraheze.org/bluearchivewiki/4/4f/Mari.png", "artwork": "https://static.miraheze.org/bluearchivewiki/8/8f/Mari_full.png"}, {"name": "마리(체육복)", "text": "평화로운 축제가 되기를 기원합니다", "profile": "https://static.miraheze.org/bluearchivewiki/8/88/Mari_%28Sportswear%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/73/Mari_%28Sportswear%29_full.png"}
+  , {"name": "마키", "text": "그래피티, 너무 좋아!", "profile": "https://static.miraheze.org/bluearchivewiki/2/21/Maki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/2e/Maki_full.png"}, {"name": "모모이", "text": "게임 외길 인생", "profile": "https://static.miraheze.org/bluearchivewiki/1/18/Momoi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/dd/Momoi_full.png"}
+  , {"name": "무츠키", "text": "심심해~", "profile": "https://static.miraheze.org/bluearchivewiki/0/0b/Mutsuki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c8/Mutsuki_full.png"}, {"name": "무츠키(새해)", "text": "올해는 더 재밌을 거야~!", "profile": "https://static.miraheze.org/bluearchivewiki/c/c2/Mutsuki_%28New_Year%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b2/Mutsuki_%28New_Year%29_full.png"}
+  , {"name": "미도리", "text": "재미있는 게임 추천받아요.", "profile": "https://static.miraheze.org/bluearchivewiki/e/ee/Midori.png", "artwork": "https://static.miraheze.org/bluearchivewiki/5/5e/Midori_full.png"}
+  , {"name": "미유", "text": "좋은 날은 이제 다 끝이에요……", "profile": "https://static.miraheze.org/bluearchivewiki/a/ac/Miyu.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b8/Miyu_full.png"}, {"name": "사야", "text": "나님을 칭찬해라!", "profile": "https://static.miraheze.org/bluearchivewiki/c/ce/Saya.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a1/Saya_full.png"}
+  , {"name": "사야(사복)", "text": "나님은 뭐든지 알고 있다고!", "profile": "https://static.miraheze.org/bluearchivewiki/e/e2/Saya_%28Casual%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/06/Saya_%28Casual%29_full.png"}, {"name": "사키", "text": "말보다 행동으로", "profile": "https://static.miraheze.org/bluearchivewiki/d/d0/Saki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/1/19/Saki_full.png"}
+  , {"name": "세리나", "text": "몸이 아프면 언제든 연락주세요", "profile": "https://static.miraheze.org/bluearchivewiki/4/41/Serina.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b8/Serina_full.png"}, {"name": "세리나(크리스마스)", "text": "크리스마스를 맞아, 행복을 모두에게.", "profile": "https://static.miraheze.org/bluearchivewiki/1/19/Serina_%28Christmas%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/74/Serina_%28Christmas%29_full.png"}
+  , {"name": "세리카", "text": "대책위원회 쿠로미 세리카입니다", "profile": "https://static.miraheze.org/bluearchivewiki/c/c8/Serika.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c0/Serika_full.png"}, {"name": "세리카(새해)", "text": "모두 새해 복 많이 받으세요", "profile": "https://static.miraheze.org/bluearchivewiki/6/61/Serika_%28New_Year%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/01/Serika_%28New_Year%29_full.png"}
+  , {"name": "슌", "text": "천사들과 함께하는 삶", "profile": "https://static.miraheze.org/bluearchivewiki/1/17/Shun.png", "artwork": "https://static.miraheze.org/bluearchivewiki/4/4f/Shun_full.png"}, {"name": "슌(어린이)", "text": "탕후루가 먹고 싶네요~", "profile": "https://static.miraheze.org/bluearchivewiki/5/53/Shun_%28Kid%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/25/Shun_%28Kid%29_full.png"}
+  , {"name": "스즈미", "text": "오늘도 평안한 하루를", "profile": "https://static.miraheze.org/bluearchivewiki/0/07/Suzumi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d5/Suzumi_full.png"}, {"name": "시미코", "text": "책은 대출기간 내에 반납해주세요", "profile": "https://static.miraheze.org/bluearchivewiki/f/f4/Shimiko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/9/93/Shimiko_full.png"}
+  , {"name": "시즈코", "text": "백야당 절찬 영업중!", "profile": "https://static.miraheze.org/bluearchivewiki/7/77/Shizuko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/e/e3/Shizuko_full.png"}, {"name": "아리스", "text": "밀레니엄 게임개발부 아리스입니다.", "profile": "https://static.miraheze.org/bluearchivewiki/0/0f/Arisu.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/26/Arisu_full.png"}
+  , {"name": "아스나", "text": "최고의 봉사를 당신에게!", "profile": "https://static.miraheze.org/bluearchivewiki/9/9f/Asuna.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c7/Asuna_full.png"}, {"name": "아스나(바니걸)", "text": "최고의 즐거움을 당신에게!", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Asuna_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/35/Asuna_%28Bunny_Girl%29_full.png"}
+  , {"name": "아야네", "text": "상식이 존중받는 동아리, 대책위원회입니다", "profile": "https://static.miraheze.org/bluearchivewiki/a/a7/Ayane.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/3f/Ayane_full.png"}, {"name": "아야네(수영복)", "text": " ", "profile": "https://static.miraheze.org/bluearchivewiki/f/f6/Ayane_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/7f/Ayane_%28Swimsuit%29_full.png"}
+  , {"name": "아이리", "text": "민트초코는 정말 최고야!", "profile": "https://static.miraheze.org/bluearchivewiki/9/96/Airi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/4/4b/Airi_full.png"}, {"name": "아즈사", "text": "et omnia vanitas", "profile": "https://static.miraheze.org/bluearchivewiki/8/86/Azusa.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/06/Azusa_full.png"}
+  , {"name": "아즈사(수영복)", "text": "A brevis paradisum", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Azusa_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/2e/Azusa_%28Swimsuit%29_full.png"}
+  , {"name": "아츠코", "text": "요즘은 꽃말을 배우고 있는 중", "profile": "https://static.miraheze.org/bluearchivewiki/c/c7/Atsuko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/f/fc/Atsuko_full.png"}, {"name": "아카네", "text": "따뜻한 홍차 한 잔의 여유", "profile": "https://static.miraheze.org/bluearchivewiki/a/aa/Akane.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/cf/Akane_full.png"}
+  , {"name": "아카네(바니걸)", "text": "", "profile": "https://static.miraheze.org/bluearchivewiki/9/99/Akane_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d3/Akane_%28Bunny_Girl%29_full.png"}]
 
   // , {"name": "", "text": "", "profile": ""}
 
@@ -565,7 +566,7 @@ function Main() {
         <div className="profile-text flex items-center ml-[100px]">
           <div className="lv mr-6 -ml-14">
             <div className="lv-text font-molu text-[30px] text-[#eee466] -mb-3 italic">Lv.</div>
-            <div className="lv font-molu-bold text-5xl text-white italic -ml-3">45</div>
+            <div className="lv font-molu-bold text-5xl text-white italic -ml-3">{ level }</div>
           </div>
 
           <div className="name">
