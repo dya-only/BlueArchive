@@ -17,6 +17,7 @@ import HyakkiyakoBG from "../assets/BG_Hyakkiyako_Collection.png"
 import ValkyrieBG from "../assets/BG_Valkyrie_Collection.png"
 import nav from '../assets/navbar.png'
 import home from '../assets/home.png'
+import InfoTitle from "../assets/info_window.png"
 
 function Students() {
   const [studentInfo, setStudentInfo] = useState("")
@@ -121,7 +122,13 @@ function Students() {
             <img className='bg absolute w-screen h-screen' src={ HyakkiyakoBG } />
            : null }
           
-          <img className='w-[1150px] z-20 mt-[700px]' src={ Characters[Characters.findIndex(e => e.name == studentInfo)].artwork } />
+          <div className="character w-[1700px] h-[800px] z-20">
+            <img className='object-contain' src={ Characters[Characters.findIndex(e => e.name == studentInfo)].artwork } />
+          </div>
+          <div className="z-30 w-screen h-screen flex justify-start items-end fixed">
+            <img className='w-[600px] mb-[30px] ml-[100px]' src={ InfoTitle } />
+            <div className="info-name font-molu-bold text-white text-[40px] z-30 w-[600px] mb-[194px] ml-[180px] fixed">{ Characters[Characters.findIndex(e => e.name == studentInfo)].name }</div>
+          </div>
         </div>
        : null }
 
