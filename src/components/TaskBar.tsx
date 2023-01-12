@@ -47,6 +47,8 @@ function TaskBar() {
         <img className='w-12 mt-2 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' src={ Schedule }></img>
         <Link to="/students">
           <img className='w-13 mt-3 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' src={ Students }></img>
+          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[40px] -mt-[70px] fixed animate-ping"></div>
+          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[40px] -mt-[70px] fixed"></div>
         </Link>
         <img className='w-15 mt-4 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' src={ Set }></img>
         <img className='w-15 mt-3 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' src={ Circle }></img>
@@ -54,6 +56,8 @@ function TaskBar() {
         <img className='w-15 mt-5 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' src={ Store }></img>
         <Link to="/pickup">
           <img className='w-15 mr-[70px] transition duration-100 active:scale-90 cursor-pointer' src={ Gacha }></img>
+          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[50px] -mt-[70px] fixed animate-ping"></div>
+          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[50px] -mt-[70px] fixed"></div>
         </Link>
       </div>
 

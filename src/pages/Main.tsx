@@ -122,7 +122,7 @@ function Main() {
 
     setInterval(() => {
       loading()
-    }, Math.floor(Math.random() * 100) + 10)
+    }, Math.floor(Math.random() * 300) + 200)
 
   }
 
@@ -546,6 +546,8 @@ function Main() {
 
           <div className="flex items-center justify-center cursor-pointer">
             <img className='w-[33px] transition duration-100 active:scale-90' src={ profileBtn } onClick={ onClickMemorial } />
+            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] -ml-[100px] -mt-[25px] fixed animate-ping"></div>
+            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] -ml-[100px] -mt-[25px] fixed"></div>
 
             <div className="sub-line bg-neutral-400 w-[1px] h-[21px] rotate-[12deg] mr-5 ml-5 rounded-2xl"></div>
 
@@ -585,6 +587,8 @@ function Main() {
           <img className='notice w-[70px] h-[70px] transition duration-100 active:scale-90 cursor-pointer m-4 mr-10' src={ Notice } />
           <button className='mr-[80px] mb-[115px]' onClick={ onClickMomo }>
             <img className='momo-talk w-[63px] absolute transition duration-100 active:scale-90 cursor-pointer m-4' src={ MomoTalk } />
+            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[70px] mt-[20px] fixed animate-ping"></div>
+            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[70px] mt-[20px] fixed"></div>
           </button>
         </div>
         <div className="flex w-[140px] justify-center ml-[85px]">
