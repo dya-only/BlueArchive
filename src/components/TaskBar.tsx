@@ -78,7 +78,9 @@ function TaskBar() {
       </div>
 
       <div className="task mb-32">
-        <img className='shadow-lg w-[250px] transition duration-100 active:scale-90 cursor-pointer' src={ Task } />
+        <Link to="/task">
+          <img className='w-[250px] transition duration-100 active:scale-90 cursor-pointer' src={ Task } />
+        </Link>
       </div>
 
     </div>

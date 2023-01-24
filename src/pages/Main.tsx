@@ -485,27 +485,28 @@ function Main() {
 
       {/* Memorial Acts */}
       { memorial == "Yuuka" ?
-        <video className="object-none min-w-[2000px] overflow-auto fixed -ml-10 -mt-6 -z-10" muted autoPlay loop>
+        <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
+          {/* object-none min-w-[2000px] overflow-auto fixed -ml-10 -mt-6 -z-10 */}
           <source src={ Yuuka_Memorial } type="video/mp4" />
         </video>
       : null }
 
       { memorial == "Azusa" ?
-        <video className="w-screen overflow-none fixed m-0 -z-10" muted autoPlay loop>
+        <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
           {/* w-screen overflow-none fixed m-0 -z-10 */}
           <source src={ Azusa_Memorial } type="video/mp4" />
         </video>
       : null }
 
       { memorial == "Hoshino" ?
-        <video className="w-screen overflow-none fixed m-0 -z-10" muted autoPlay loop>
+        <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
           {/* w-screen overflow-none fixed m-0 -z-10 */}
           <source src={ Hoshino_Memorial } type="video/mp4" />
         </video>
       : null }
 
       { memorial == "Atsuko" ?
-        <video className="w-screen overflow-none fixed m-0 -z-10" muted autoPlay loop>
+        <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
           {/* w-screen overflow-none fixed m-0 -z-10 */}
           <source src={ Atsuko_Memorial } type="video/mp4" />
         </video>

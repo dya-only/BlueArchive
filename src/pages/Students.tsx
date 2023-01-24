@@ -19,6 +19,8 @@ import nav from '../assets/navbar.png'
 import home from '../assets/home.png'
 import InfoTitle from "../assets/info_window.png"
 
+import Future_Bossa from "./FutureBossa.wav"
+
 function Students() {
   const [studentInfo, setStudentInfo] = useState("")
   const [infoPage, setInfoPage] = useState(false)
@@ -64,7 +66,12 @@ function Students() {
   return (
     <div className="pick-up bg-cover font-molu-bold overflow-x-hidden">
 
-      <NavBar />
+      <audio loop autoPlay>
+        <source src={ Future_Bossa } type="audio/wav" />
+      </audio>
+
+      <NavBar name="학생 관리" />
+
       { infoPage == true ?
         <div className="navbar z-30 flex items-center justify-between tracking-tight fixed bg-[#f2fafd] shadow-lg rounded-b-4xl h-[60px] w-screen mb-12">
           <div className="front-menu flex items-center">

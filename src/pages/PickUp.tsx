@@ -46,13 +46,13 @@ function PickUp() {
   return (
     <div className="pick-up bg-cover font-molu-bold overflow-x-hidden">
 
-      <NavBar />
+      <NavBar name="학생 모집" />
 
       <img className='w-screen h-screen fixed -z-20' src={ Sub_bg } alt="" />
 
       {/* Gacha Act */}
       { is10P == true || is1P == true ?
-        <video className="w-screen overflow-none absolute z-30" autoPlay>
+        <video className="h-screen w-screen object-cover z-50 fixed" autoPlay>
           <source src={ Act10 } type="video/mp4" />
         </video>
         : null }
@@ -61,7 +61,7 @@ function PickUp() {
         <source src={ connected_sky } type="audio/wav" />
       </audio>
       
-      <video className="w-screen absolute -z-20" muted autoPlay loop>
+      <video className="h-screen w-screen object-cover -z-10 fixed" muted autoPlay loop>
         <source src={ Atsuko_PV } type="video/mp4" />
       </video>
 
