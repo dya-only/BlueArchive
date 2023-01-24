@@ -121,12 +121,14 @@ function Students() {
            { Characters[Characters.findIndex(e => e.name == studentInfo)].school == "Hyakkiyako" ?
             <img className='bg absolute w-screen h-screen' src={ HyakkiyakoBG } />
            : null }
-          
-          <div className="character w-[1700px] h-[800px] z-20">
-            <img className='object-contain' src={ Characters[Characters.findIndex(e => e.name == studentInfo)].artwork } />
+
+          <div className="w-screen flex justify-start ml-[13rem]">
+            <div className="character w-[300px] h-screen z-20 flex justify-center relative left-[5%] mt-[200px]">
+              <img className='h-[130%] object-cover overflow-visible' src={ Characters[Characters.findIndex(e => e.name == studentInfo)].artwork } />
+            </div>
           </div>
           <div className="z-30 w-screen h-screen flex justify-start items-end fixed">
-            <img className='w-[600px] mb-[30px] ml-[100px]' src={ InfoTitle } />
+            <img className='w-[600px] mb-[30px] ml-[40px]' src={ InfoTitle } />
             <div className="info-name font-molu-bold text-white text-[40px] z-30 w-[600px] mb-[194px] ml-[180px] fixed">{ Characters[Characters.findIndex(e => e.name == studentInfo)].name }</div>
           </div>
         </div>
