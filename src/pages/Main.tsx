@@ -38,12 +38,14 @@ import momo_name_btn from "../assets/momo_name_btn.png"
 import momo_down_btn from "../assets/momo_down_btn.png"
 import yuuka_story_btn from "../assets/yuuka_story_btn.png"
 import yuuka_profile from "../assets/yuuka_profile.png"
+import mika_profile from '../assets/mika-profile.png'
 import TouchToStart from "../assets/touch_to_start.png"
-
+import Mika_Memorial from './Mika_Memorial.mp4'
 import Yuuka_Memorial from "./midsummer_cat_yuuka_gym.mp4"
 import Azusa_Memorial from "./luminous_memory_azusa_mizugi.mp4"
 import Hoshino_Memorial from "./theme120_hoshino_mizugi.mp4"
 import Atsuko_Memorial from "./Atsuko_Memorial.mp4"
+
 import YuukaStory1 from "./Yuuka/YuukaStory1.mp4"
 import YuukaStory2 from "./Yuuka/YuukaStory2.mp4"
 import YuukaStory3 from "./Yuuka/YuukaStory3.mp4"
@@ -55,6 +57,7 @@ import LuminousMemory from "./luminous_memory.mp3"
 import MidSummerCat from "./midsummer_cat.mp3"
 import Theme120 from "./theme_120.mp3"
 import MidnightTrip from "./MidnightTrip.mp3"
+import DailyRoutine247 from './DailyRoutine247.wav'
 
 function Main() {
   const [memorial, setMemorial] = useState("")
@@ -122,7 +125,7 @@ function Main() {
 
     setInterval(() => {
       loading()
-    }, Math.floor(Math.random() * 300) + 200)
+    }, 200)
 
   }
 
@@ -193,6 +196,7 @@ function Main() {
   
   return (
     <div className="main bg-cover font-molu-bold overflow-x-hidden">
+
       {/* <Loading /> */}
       { memorial == "Loading" ?
         <button className='w-screen h-screen z-50 cursor-default fixed flex justify-center items-end' onClick={ ()=>{ onTouch() } }>
@@ -250,7 +254,7 @@ function Main() {
                 </div>
               <div className="border-b-[2px] border-gray-300 w-[650px]"></div>
             </div>
-            <div className="cards flex justify-start items-start w-[650px] h-[250px]">
+            <div className="cards flex flex-wrap overflow-hidden overflow-y-visible justify-center items-start w-[650px] h-[280px] mt-12">
               <button className='m-4' onClick={ () => SelectMemorial("Yuuka") }>
                 <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ yuuka_gym } />
                 <div className='text-xl text-[#2c4663]'>유우카 (체육복)</div>
@@ -267,9 +271,14 @@ function Main() {
                 <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ atsuko } />
                 <div className='text-xl text-[#2c4663]'>아츠코</div>
               </button>
+              <button className='m-4' onClick={ () => SelectMemorial("Mika") }>
+                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ mika_profile } />
+                <div className='text-xl text-[#2c4663]'>미카</div>
+              </button>
             </div>
-            <div className="flex justify-center">
-              <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg' onClick={onClickQuit}>확인</button>
+            <div className="flex flex-col items-center">
+              <div className="border-b-[2px] border-gray-300 w-[650px]"></div>
+              <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg mt-4 mb-4' onClick={onClickQuit}>확인</button>
             </div>  
           </div>
         </div>
@@ -483,6 +492,12 @@ function Main() {
         </audio>
        : null }
 
+      { isMusic == true && memorial == "Mika" && isYuukaStory == 0 ?
+        <audio loop autoPlay>
+          <source src={ DailyRoutine247 } type="audio/mp3" />
+        </audio>
+       : null }
+
       {/* Memorial Acts */}
       { memorial == "Yuuka" ?
         <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
@@ -509,6 +524,13 @@ function Main() {
         <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
           {/* w-screen overflow-none fixed m-0 -z-10 */}
           <source src={ Atsuko_Memorial } type="video/mp4" />
+        </video>
+      : null }
+
+      { memorial == "Mika" ?
+        <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
+          {/* w-screen overflow-none fixed m-0 -z-10 */}
+          <source src={ Mika_Memorial } type="video/mp4" />
         </video>
       : null }
 

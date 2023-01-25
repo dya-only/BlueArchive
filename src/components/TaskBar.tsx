@@ -79,6 +79,8 @@ function TaskBar() {
 
       <div className="task mb-32">
         <Link to="/task">
+          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[170px] fixed animate-ping"></div>
+          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[170px] fixed"></div>
           <img className='w-[250px] transition duration-100 active:scale-90 cursor-pointer' src={ Task } />
         </Link>
       </div>
