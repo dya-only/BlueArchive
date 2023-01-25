@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faHouse, faGear } from '@fortawesome/free-solid-svg-icons'
 
-import NavBar from '../components/StudentNavBar'
-import InfoNavBar from '../components/InfoNavBar'
+import NavBar from '../components/NavBar'
 
 import Window_bg from "../assets/window_bg.png"
 import student_icon from "../assets/students.png"
