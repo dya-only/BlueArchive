@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faEnvelope,  } from '@fortawesome/free-solid-svg-icons'
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 import TaskBar from '../components/TaskBar'
 
@@ -58,7 +57,6 @@ import MidnightTrip from "./MidnightTrip.mp3"
 import DailyRoutine247 from './DailyRoutine247.wav'
 
 function Main() {
-  const handle = useFullScreenHandle();
   const [memorial, setMemorial] = useState("")
   const [level, setLevel] = useState(47)
   const [isMusic, setIsMusic] = useState(false)
