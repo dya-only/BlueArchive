@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faEnvelope,  } from '@fortawesome/free-solid-svg-icons'
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 import TaskBar from '../components/TaskBar'
 
@@ -57,6 +58,7 @@ import MidnightTrip from "./MidnightTrip.mp3"
 import DailyRoutine247 from './DailyRoutine247.wav'
 
 function Main() {
+  const handle = useFullScreenHandle();
   const [memorial, setMemorial] = useState("")
   const [level, setLevel] = useState(47)
   const [isMusic, setIsMusic] = useState(false)
@@ -71,6 +73,7 @@ function Main() {
   const [ReadingStory, setReadingStory] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [init, setInit] = useState(0)
+  const [isFullScreen, setIsFullScreen] = useState(false)
   let _init = 0
   const [nowEndLoading, setNowEndLoading] = useState(false)
   
@@ -142,6 +145,8 @@ function Main() {
   }
 
   const onMusic = () => {
+    document.documentElement.requestFullscreen()
+    setIsFullScreen(true)
     setIsMusic(true)
     sessionStorage.setItem("isPlaying", "true")
 
@@ -189,6 +194,16 @@ function Main() {
     setReadingStory(name)
     setProgress(1)
     // localStorage.setItem("YuukaStoryProgress", String(parseInt(JSON.parse(localStorage.getItem("YuukaStoryProgress") || '{}')) + 1))
+  }
+
+  const FullScreen = () => {
+    if (!isFullScreen) {
+      document.documentElement.requestFullscreen()
+      setIsFullScreen(true)
+    } else {
+      document.exitFullscreen()
+      setIsFullScreen(false)
+    }
   }
 
   useEffect(() => {
@@ -251,11 +266,16 @@ function Main() {
         </audio>
        : null }
 
+      {/* FullScreen */}
+      <div className="w-screen flex justify-end fixed mt-[80px] pr-4">
+        <button className='pl-2 pr-2 pt-1 pb-1 m-2 text-2xl bg-white rounded-md shadow-lg transition duration-100 active:scale-90' onClick={FullScreen}>전체화면</button>
+      </div>
+
       {/* Music Button */}
       { JSON.parse(isMusic.toString()) == false ?
         <div className="absolute w-full h-full backdrop-brightness-[0.2] flex items-center justify-center z-50 drop-shadow-2xl">
           <div className="flex flex-col justify-center items-center w-[600px] h-[300px] bg-white rounded-2xl">
-            <div className="font-molu text-xl mb-8">※전체화면을 사용해주세요.<br/>사운드 재생을 위해 확인 버튼을 눌러주세요.<br/><br/>영상의 용량 문제로 인해 재생 중 약간의 지연이 생길 수 있습니다.</div>
+            <div className="font-molu text-xl mb-8">※풀스크린,전체화면으로 설정해주세요.<br/>사운드 재생을 위해 확인 버튼을 눌러주세요.<br/><br/>영상의 용량 문제로 인해 메모리얼 재생 중 약간의 지연이 생길 수 있습니다.</div>
             <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg' onClick={onMusic}>확인</button>
           </div>
         </div>
