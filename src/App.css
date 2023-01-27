@@ -54,6 +54,226 @@
   border-radius: 100px;
 }
 
+@media ( max-width: 1000px ) {
+  #lobby-bar {
+    margin-top: 4px;
+    padding-right: 30px;
+    padding-top: 10px;
+  }
+  #menubar {
+    width: 10rem;
+  }
+  #menu-btn {
+    width: 1.5rem;
+    font-size: 1.2rem;
+  }
+  #set-menu-btn {
+    width: 1.1rem;
+  }
+  #sub-line {
+    height: 15px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  #ping {
+    width: 8px;
+    height: 8px;
+    margin-right: -38px;
+    margin-top: -15px;
+  }
+  #item-menu {
+    width: 7.85rem;
+    visibility: hidden;
+  }
+  #items {
+    margin-right: -73px;
+  }
+  #item-contain {
+    width: 107px;
+  }
+  #ap-contain {
+    width: 97px;
+  }
+  #item-count-ap {
+    font-family: molu;
+    font-size: 16px;
+    padding-left: 25px;
+    padding-bottom: 2px;
+    position: fixed;
+  }
+  #item-count-coin {
+    font-family: molu;
+    font-size: 16px;
+    padding-left: 30px;
+    padding-bottom: 2px;
+    position: fixed;
+  }
+  #item-count-blue {
+    font-family: molu;
+    font-size: 16px;
+    padding-left: 25px;
+    padding-bottom: 4px;
+    position: fixed;
+  }
+  #m-item-menu {
+    visibility: visible;
+    width: 7.188rem;
+  }
+  #m-blue {
+    visibility: visible;
+    width: 6.5rem;
+  }
+  #m-ap {
+    visibility: visible;
+    width: 6.5rem;
+  }
+  #plus1 {
+    margin-left: 33px;
+    width: 15px;
+    height: 15px;
+  }
+  #plus2 {
+    margin-left: 195px;
+    width: 15px;
+    height: 15px;
+  }
+  #profiles {
+    margin-left: 90px;
+  }
+  #profile-contain {
+    width: 300px;
+    margin-top: 18px;
+    margin-left: -50px;
+  }
+  #profilemenu {
+    width: 230px;
+  }
+  #name {
+    font-size: 18px;
+  }
+  #lv-contain {
+    margin-right: 15px;
+  }
+  #lv-text {
+    font-size: 18px;
+    margin-bottom: -5px;
+  }
+  #lv {
+    font-size: 30px;
+  }
+  #exp-text {
+    font-size: 12px;
+  }
+  #exp {
+    height: 3px;
+    width: 150px;
+  }
+  #exp-bar {
+    visibility: hidden;
+  }
+  #m-exp-bar {
+    visibility: visible;
+  }
+  #use-m {
+    width: 160px;
+    display: flex;
+    margin-top: -24px;
+  }
+  #notice {
+    width: 43px;
+    height: 43px;
+    margin-right: 16px;
+  }
+  #momotalk {
+    width: 40px;
+  }
+  #mission {
+    width: 43px;
+    height: 43px;
+    margin-right: 14px;
+    /* margin-left: -2px; */
+    margin-top: 20px;
+  }
+  #blue {
+    width: 48px;
+    height: 53px;
+  }
+  #use-icons {
+    margin-bottom: -45px;
+  }
+  #t-notice {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    font-size: 17px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  #t-momotalk {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    font-size: 17px;
+    margin-top: 20px;
+    margin-left: -40px;
+  }
+  #t-mission {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    font-size: 17px;
+    margin-top: -52px;
+    margin-left: 42px;
+  }
+  #t-blue {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    font-size: 17px;
+    margin-top: -51px;
+    margin-left: -30px;
+  }
+  #task-btns {
+    margin-bottom: 4%;
+  }
+  #cafe {
+    width: 40px;
+    margin-right: 40px;
+    margin-bottom: -3px;
+  }
+  #sche {
+    width: 29px;
+    margin-right: 40px;
+  }
+  #student {
+    width: 32px;
+    margin-right: 65px;
+  }
+  #set {
+    width: 35px;
+    margin-right: 40px;
+  }
+  #circle {
+    width: 35px;
+    margin-right: 40px;
+  }
+  #build {
+    width: 32px;
+    margin-right: 40px;
+  }
+  #store {
+    width: 40px;
+    margin-right: 40px;
+  }
+  #gacha {
+    width: 35px;
+    margin-bottom: -8px;
+    margin-right: 40px;
+  }
+  #t-text {
+    visibility: hidden;
+  }
+  #time {
+    visibility: hidden;
+  }
+  #full-top {
+    margin-top: 40px;
+    padding-right: 2px;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

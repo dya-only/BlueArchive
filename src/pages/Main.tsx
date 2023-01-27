@@ -18,6 +18,9 @@ import settBtn from '../assets/sett_btn.png'
 import BlueItemMenu from '../assets/blue_item_menu.png'
 import CoinItemMenu from '../assets/coin_item_menu.png'
 import ApItemMenu from '../assets/ap_item_menu.png'
+import MBlueItemMenu from '../assets/m_blue_item_menu.png'
+import MApItemMenu from '../assets/m_ap_item_menu.png'
+import MCoinItemMenu from '../assets/m_coin_item_menu.png'
 import plus from '../assets/plus.png'
 import yuuka_gym from "../assets/yuuka_gym.png"
 import hoshino_mizugi from "../assets/hoshino_mizugi.png"
@@ -58,7 +61,7 @@ import DailyRoutine247 from './DailyRoutine247.wav'
 
 function Main() {
   const [memorial, setMemorial] = useState("")
-  const [level, setLevel] = useState(47)
+  const [level, setLevel] = useState(48)
   const [isMusic, setIsMusic] = useState(false)
   const [isSelectingMemorial, setIsSelectingMemorial] = useState(false)
   const [expProgress, setExpProgress] = useState(0)
@@ -124,6 +127,7 @@ function Main() {
   const HinaSwim_Chats5 = ["선생, 오늘은 일찍 업무 처리를 시작했으니까.", "아마 남은 일도 오전 중에 다 마무리가 될 것 같아.", "그래서 말인데······.", "*응응! 물론입니다!", "아니······, 본론을 꺼내기 전에 먼저 대답부터 해도 곤란하거든······?", "나 참······. 어쨌거나 선생이 말했었지······.", "휴양지까지 와서, 쉬지 않는 건 엄청 아까운 일이라고.", "*응, 기왕 바다까지 왔으니까.", "······나로선 잘 이해되지 않는 이야기지만.", "선생이 그렇게까지 말한다면야······.", "응. 좋아. 오후엔 같이 어울려줄래?", "같이 바닷가에 놀러 가는 정도라면,", "그, 할 수 있을 테니까.", "*물론입니다!", "응. 그럼······. 이따 점심쯤에 봐. 선생", "&"]
 
   const StyledProgressBar = styled.div` width: ${ Math.floor(expProgress / maxExp * 100) }%; height: 5px; background-color: #59eefb`
+  const MStyledProgressBar = styled.div` width: ${ Math.floor(expProgress / maxExp * 100) }%; height: 3px; background-color: #59eefb`
 
   const onTouch = () => {
     if (init == 100) {
@@ -265,8 +269,8 @@ function Main() {
        : null }
 
       {/* FullScreen */}
-      <div className="w-screen flex justify-end fixed mt-[80px] pr-4">
-        <button className='pl-2 pr-2 pt-1 pb-1 m-2 text-2xl bg-white rounded-md shadow-lg transition duration-100 active:scale-90' onClick={FullScreen}>전체화면</button>
+      <div className="w-screen flex justify-end fixed md:mt-[80px] pr-4" id="full-top">
+        <button id="fullscreen" className='pl-2 pr-2 pt-1 pb-1 m-2 md:text-2xl text-[#16365C] bg-[#CBCCFF] rounded-md shadow-lg transition duration-100 active:scale-90' onClick={FullScreen}>전체화면</button>
       </div>
 
       {/* Music Button */}
@@ -757,94 +761,102 @@ function Main() {
       </Link> */}
 
       {/* <LobbyNavBar /> */}
-      <div className="lobby-navbar flex items-center justify-end fixed pr-[58px] mt-8 w-screen">
+      <div className="lobby-navbar flex items-center justify-end fixed pr-[58px] mt-8 w-screen" id="lobby-bar">
 
-        <div className="items flex justify-center items-center mr-[50px]">
+        <div className="items flex justify-center items-center mr-[50px]" id="items">
 
-          <div className="item-menu flex justify-start items-center w-[200px] mr-2">
-            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%]' src={ ApItemMenu } />
-            <div className="font-molu-bold text-[#16365c] text-[24px] mt-1 pl-[47px] tracking-tight flex justify-center">60/148</div>
+          <div className="item-menu flex justify-start items-center w-[200px] mr-2" id="ap-contain">
+            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%]' id="item-menu" src={ ApItemMenu } />
+            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%] invisible' id="m-ap" src={ MApItemMenu } />
+            <div className="font-molu-bold text-[#16365c] text-[24px] mt-1 pl-[47px] tracking-tight flex justify-center" id="item-count-ap">60/148</div>
           </div>
 
-          <img className='w-6 h-6 fixed mr-[275px] cursor-pointer transition duration-100 active:scale-90' src={ plus } />
+          <img className='w-6 h-6 fixed mr-[275px] cursor-pointer transition duration-100 active:scale-90' id='plus1' src={ plus } />
 
-          <div className="item-menu flex justify-start items-center w-[200px] mr-2">
-            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%]' src={ CoinItemMenu } />
-            <div className="font-molu-bold text-[#16365c] text-[24px] mt-1 pl-[55px] tracking-tight flex justify-center">4504918</div>
+          <div className="item-menu flex justify-start items-center w-[200px] mr-2" id="item-contain">
+            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%]' id="item-menu" src={ CoinItemMenu } />
+            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%]' id="m-item-menu" src={ MCoinItemMenu } />
+            <div className="font-molu-bold text-[#16365c] text-[24px] mt-1 pl-[55px] tracking-tight flex justify-center" id="item-count-coin">4504918</div>
           </div>
 
-          <div className="item-menu flex justify-start items-center w-[200px]">
-            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%]' src={ BlueItemMenu } />
-            <div className="font-molu-bold text-[#16365c] text-[24px] mt-1 pl-[45px] tracking-tight flex justify-center">12402</div>
+          <div className="item-menu flex justify-start items-center w-[200px]" >
+            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%]' id="item-menu" src={ BlueItemMenu } />
+            <img className='absolute shadow-xl rounded-sm w-[200px] -z-10 opacity-[85%] invisible' id="m-blue" src={ MBlueItemMenu } />
+            <div className="font-molu-bold text-[#16365c] text-[24px] mt-1 pl-[45px] tracking-tight flex justify-center" id="item-count-blue">12402</div>
           </div>
 
-          <img className='w-6 h-6 fixed ml-[555px] cursor-pointer transition duration-100 active:scale-90' src={ plus } />
+          <img className='w-6 h-6 fixed ml-[555px] cursor-pointer transition duration-100 active:scale-90' id='plus2' src={ plus } />
 
         </div>
 
         <div className="menu flex justify-center items-center">
-          <img className='absolute shadow-xl rounded-sm w-[240px] h-[45px] -z-10' src={ menubar } />
+          <img className='absolute shadow-xl rounded-sm w-[240px] -z-10' id="menubar" src={ menubar } />
 
           <div className="flex items-center justify-center cursor-pointer">
-            <img className='w-[33px] transition duration-100 active:scale-90' src={ profileBtn } onClick={ onClickMemorial } />
-            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] -ml-[100px] -mt-[25px] fixed animate-ping" onClick={ onClickMemorial }></div>
-            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] -ml-[100px] -mt-[25px] fixed"></div>
+            <img className='w-[33px] transition duration-100 active:scale-90' id="menu-btn" src={ profileBtn } onClick={ onClickMemorial } />
+            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] -ml-[100px] -mt-[25px] fixed animate-ping" id="ping" onClick={ onClickMemorial }></div>
+            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] -ml-[100px] -mt-[25px] fixed" id="ping"></div>
 
-            <div className="sub-line bg-neutral-400 w-[1px] h-[21px] rotate-[12deg] mr-5 ml-5 rounded-2xl"></div>
+            <div className="sub-line bg-neutral-400 w-[1px] h-[21px] rotate-[12deg] mr-5 ml-5 rounded-2xl" id="sub-line"></div>
 
-            <FontAwesomeIcon className='text-[27px] text-[#426199] transition duration-100 active:scale-90 cursor-pointer' icon={ faEnvelope } />
+            <FontAwesomeIcon className='text-[27px] text-[#426199] transition duration-100 active:scale-90 cursor-pointer' id="menu-btn" icon={ faEnvelope } />
 
-            <div className="sub-line bg-neutral-400 w-[1px] h-[21px] rotate-[12deg] mr-5 ml-5 rounded-2xl"></div>
+            <div className="sub-line bg-neutral-400 w-[1px] h-[21px] rotate-[12deg] mr-5 ml-5 rounded-2xl" id="sub-line"></div>
 
-            <img className='w-[24px] transition duration-100 active:scale-90 cursor-pointer' src={ settBtn } />
+            <img className='w-[24px] transition duration-100 active:scale-90 cursor-pointer' id="set-menu-btn" src={ settBtn } />
           </div>
         </div>
       </div>
 
       <TaskBar />
 
-      <div className="profile w-[320px] flex justify-center items-center mt-8 mb-[35px]">
-        <img className='w-[350px] absolute -z-10 ml-7' src={ ProfileBar } />
+      <div className="profile w-[320px] flex justify-center items-center mt-8 mb-[35px]" id='profile-contain'>
+        <img className='w-[350px] absolute -z-10 ml-7' id='profilemenu' src={ ProfileBar } />
 
-        <div className="profile-text flex items-center ml-[100px]">
-          <div className="lv mr-6 -ml-14">
-            <div className="lv-text font-molu text-[30px] text-[#eee466] -mb-3 italic">Lv.</div>
-            <div className="lv font-molu-bold text-5xl text-white italic -ml-3">{ level }</div>
+        <div className="profile-text flex items-center ml-[100px]" id="profiles">
+          <div className="lv mr-6 -ml-14" id="lv-contain">
+            <div className="lv-text font-molu text-[30px] text-[#eee466] -mb-3 italic" id="lv-text">Lv.</div>
+            <div className="lv font-molu-bold text-5xl text-white italic -ml-3" id='lv'>{ level }</div>
           </div>
 
           <div className="name">
-            <div className="usrname font-molu-bold text-white text-[24px]">귀여운디아</div>
-            <div className="exp-bar bg-[#3e4f61] h-[5px] w-[215px]">
+            <div className="usrname font-molu-bold text-white text-[24px]" id="name">귀여운디아</div>
+            <div className="exp-bar bg-[#3e4f61] h-[5px] w-[215px]" id="exp">
               {/* <div className="exp-progress bg-[#59eefb] h-[5px] w-[60%]"></div> */}
-              <StyledProgressBar></StyledProgressBar>
+              <div id="exp-bar">
+                <StyledProgressBar></StyledProgressBar>
+              </div>
+              <div id="m-exp-bar" className='invisible -mt-[5px]'>
+                <MStyledProgressBar></MStyledProgressBar>
+              </div>
             </div>
-            <div className="exp-text text-[#59eefb]">{ expProgress }/{ maxExp }</div>
+            <div className="exp-text text-[#59eefb]" id="exp-text">{ expProgress }/{ maxExp }</div>
           </div>
         </div>
       </div>
 
-      <div className="use-menu flex flex-col justify-center items-center w-[200px]">
-        <div className="flex w-[140px] justify-center ml-[85px]">
-          <img className='notice w-[70px] h-[70px] transition duration-100 active:scale-90 cursor-pointer m-4 mr-10' src={ Notice } />
-          <button className='mr-[80px] mb-[115px]' onClick={ onClickMomo }>
-            <img className='momo-talk w-[63px] absolute transition duration-100 active:scale-90 cursor-pointer m-4' src={ MomoTalk } />
+      <div className="use-menu flex flex-col justify-center items-center w-[200px]" id='use-m'>
+        <div className="flex w-[140px] justify-center ml-[85px]" id='use-icons'>
+          <img className='notice w-[70px] h-[70px] transition duration-100 active:scale-90 cursor-pointer m-4 mr-10' id='notice' src={ Notice } />
+          <button className='mr-[80px] mb-[115px]' id='momobtn' onClick={ onClickMomo }>
+            <img className='momo-talk w-[63px] absolute transition duration-100 active:scale-90 cursor-pointer m-4' id='momotalk' src={ MomoTalk } />
             <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[70px] mt-[20px] fixed animate-ping"></div>
             <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[70px] mt-[20px] fixed"></div>
           </button>
         </div>
-        <div className="flex w-[140px] justify-center ml-[85px]">
-          <img className='notice w-[67px] h-[67px] transition duration-100 active:scale-90 cursor-pointer m-4 mr-[45px]' src={ Quest } />
-          <img className='momo-talk w-[70px] transition duration-100 active:scale-90 cursor-pointer m-4' src={ PyroxeneStore } />
+        <div className="flex w-[140px] justify-center ml-[85px]" id='under'>
+          <img className='notice w-[67px] h-[67px] transition duration-100 active:scale-90 cursor-pointer m-4 mr-[45px]' id='mission' src={ Quest } />
+          <img className='momo-talk w-[70px] transition duration-100 active:scale-90 cursor-pointer m-4' id='blue' src={ PyroxeneStore } />
         </div>
 
         <div className="absolute flex justify-center ml-[120px] -mt-5">
-          <div className='notice w-[60px] text-[#16365c] text-[23px] m-4 mr-[45px]'>공지</div>
-          <div className='momo-talk w-[70px]  text-[#16365c] text-[23px] m-4'>모모톡</div>
+          <div className='notice w-[60px] text-[#16365c] text-[23px] m-4 mr-[45px]' id="t-notice">공지</div>
+          <div className='momo-talk w-[70px]  text-[#16365c] text-[23px] m-4' id="t-momotalk">모모톡</div>
         </div>
 
         <div className="absolute flex justify-center ml-[110px] mt-[195px]">
-          <div className='notice w-[60px] text-[#16365c] text-[23px] m-4 mr-[18px]'>미션</div>
-          <div className='momo-talk w-[100px] text-[#16365c] text-[23px] m-4'>청휘석구매</div>
+          <div className='notice w-[60px] text-[#16365c] text-[23px] m-4 mr-[18px]' id="t-mission">미션</div>
+          <div className='momo-talk w-[100px] text-[#16365c] text-[23px] m-4' id="t-blue">청휘석구매</div>
         </div>
       </div>
 
