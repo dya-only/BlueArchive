@@ -33,6 +33,7 @@ function Students() {
     , {"name": "무츠키(새해)", "text": "올해는 더 재밌을 거야~!", "school": "Gehenna", "profile": "https://static.miraheze.org/bluearchivewiki/c/c2/Mutsuki_%28New_Year%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b2/Mutsuki_%28New_Year%29_full.png"}
     , {"name": "미도리", "text": "재미있는 게임 추천받아요.", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/e/ee/Midori.png", "artwork": "https://static.miraheze.org/bluearchivewiki/5/5e/Midori_full.png"}
     , {"name": "미유", "text": "좋은 날은 이제 다 끝이에요……", "school": "SRT", "profile": "https://static.miraheze.org/bluearchivewiki/a/ac/Miyu.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b8/Miyu_full.png"}
+    , {"name": "미카", "text": "같이 얘기해줄 사람 모집중!", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/c/c8/Mika.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a6/Mika_full.png"}
     , {"name": "사야", "text": "나님을 칭찬해라!", "school": "Shanhaijing", "profile": "https://static.miraheze.org/bluearchivewiki/c/ce/Saya.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a1/Saya_full.png"}
     , {"name": "사야(사복)", "text": "나님은 뭐든지 알고 있다고!", "school": "Shanhaijing", "profile": "https://static.miraheze.org/bluearchivewiki/e/e2/Saya_%28Casual%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/06/Saya_%28Casual%29_full.png"}
     , {"name": "사키", "text": "말보다 행동으로", "school": "SRT", "profile": "https://static.miraheze.org/bluearchivewiki/d/d0/Saki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/1/19/Saki_full.png"}
@@ -55,7 +56,9 @@ function Students() {
     , {"name": "아즈사(수영복)", "text": "A brevis paradisum", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Azusa_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/2e/Azusa_%28Swimsuit%29_full.png"}
     , {"name": "아츠코", "text": "요즘은 꽃말을 배우고 있는 중", "school": "Arius", "profile": "https://static.miraheze.org/bluearchivewiki/c/c7/Atsuko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/f/fc/Atsuko_full.png"}
     , {"name": "아카네", "text": "따뜻한 홍차 한 잔의 여유", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/a/aa/Akane.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/cf/Akane_full.png"}
-    , {"name": "아카네(바니걸)", "text": "", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/9/99/Akane_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d3/Akane_%28Bunny_Girl%29_full.png"}]
+    , {"name": "아카네(바니걸)", "text": "", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/9/99/Akane_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d3/Akane_%28Bunny_Girl%29_full.png"}
+    , {"name": "히나(수영복)", "text": "", "school": "Gehenna", "profile": "https://static.miraheze.org/bluearchivewiki/4/44/Hina_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a7/Hina_%28Swimsuit%29_full.png"}
+  ]
 
   const SelectStudent = (name: string) => {
     setStudentInfo(String(name))
@@ -135,7 +138,7 @@ function Students() {
           </div>
           <div className="z-30 w-screen h-screen flex justify-start items-end fixed">
             <img className='w-[600px] mb-[30px] ml-[40px]' src={ InfoTitle } />
-            <div className="info-name font-molu-bold text-white text-[40px] z-30 w-[600px] mb-[194px] ml-[180px] fixed">{ Characters[Characters.findIndex(e => e.name == studentInfo)].name }</div>
+            <div className="info-name font-molu-bold text-white text-[40px] z-30 w-[600px] mb-[194px] ml-[120px] fixed">{ Characters[Characters.findIndex(e => e.name == studentInfo)].name }</div>
           </div>
         </div>
        : null }

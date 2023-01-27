@@ -9,7 +9,7 @@ import nav from '../assets/navbar.png'
 function NavBar(props: any) {
 
   return (
-    <div className="navbar flex items-center justify-between tracking-tight fixed bg-[#f2fafd] shadow-lg rounded-b-4xl h-[60px] w-screen mb-12">
+    <div className="navbar flex items-center justify-between tracking-tight fixed bg-[#f2fafd] shadow-lg rounded-b-4xl h-[60px] w-screen mb-12 z-30">
       
       <div className="front-menu flex items-center">
         <img className="h-[60px]" src={ nav } alt="" />

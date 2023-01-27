@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faEnvelope,  } from '@fortawesome/free-solid-svg-icons'
 
-// import NavBar from '../components/NavBar'
-import LobbyNavBar from '../components/LobbyNavBar'
 import TaskBar from '../components/TaskBar'
 
 import Sub_bg from "../assets/sub_bg.png"
@@ -14,7 +12,6 @@ import Notice from "../assets/notice.png"
 import MomoTalk from "../assets/momo.png"
 import Quest from "../assets/quest.png"
 import PyroxeneStore from "../assets/buy_blue.png"
-import home from '../assets/home.png'
 import menubar from '../assets/menu_bar.png'
 import profileBtn from '../assets/memorial_btn.png'
 import settBtn from '../assets/sett_btn.png'
@@ -23,13 +20,7 @@ import CoinItemMenu from '../assets/coin_item_menu.png'
 import ApItemMenu from '../assets/ap_item_menu.png'
 import plus from '../assets/plus.png'
 import yuuka_gym from "../assets/yuuka_gym.png"
-import azusa_mizugi from "../assets/azusa_mizugi.png"
 import hoshino_mizugi from "../assets/hoshino_mizugi.png"
-import atsuko from "../assets/atsuko.png"
-import azusa from "../assets/azusa.png"
-import iori from "../assets/iori.png"
-import iroha from "../assets/iroha.png"
-import izuna from "../assets/izuna.png"
 import momo_logo from "../assets/momo_logo.png"
 import talk_logo from "../assets/talk_logo.png"
 import student_logo from "../assets/momo_student_logo.png"
@@ -37,19 +28,25 @@ import momo_latest_btn from "../assets/momo_latest_btn.png"
 import momo_name_btn from "../assets/momo_name_btn.png"
 import momo_down_btn from "../assets/momo_down_btn.png"
 import yuuka_story_btn from "../assets/yuuka_story_btn.png"
+import hinaswim_story_btn from "../assets/hinaswim_story_btn.png"
 import yuuka_profile from "../assets/yuuka_profile.png"
-import mika_profile from '../assets/mika-profile.png'
 import TouchToStart from "../assets/touch_to_start.png"
 import Mika_Memorial from './Mika_Memorial.mp4'
 import Yuuka_Memorial from "./midsummer_cat_yuuka_gym.mp4"
 import Azusa_Memorial from "./luminous_memory_azusa_mizugi.mp4"
 import Hoshino_Memorial from "./theme120_hoshino_mizugi.mp4"
 import Atsuko_Memorial from "./Atsuko_Memorial.mp4"
+import HinaSwim_Memorial from "./hina_swim.mp4"
 
 import YuukaStory1 from "./Yuuka/YuukaStory1.mp4"
 import YuukaStory2 from "./Yuuka/YuukaStory2.mp4"
 import YuukaStory3 from "./Yuuka/YuukaStory3.mp4"
 import YuukaStory4 from "./Yuuka/YuukaStory4.mp4"
+import HinaSwimStory1 from "./Hina(Swim)/HinaSwimStory1.mp4"
+import HinaSwimStory2 from "./Hina(Swim)/HinaSwimStory2.mp4"
+import HinaSwimStory3 from "./Hina(Swim)/HinaSwimStory3.mp4"
+import HinaSwimStory4 from "./Hina(Swim)/HinaSwimStory4.mp4"
+import HinaSwimStory5 from "./Hina(Swim)/HinaSwimStory5.mp4"
 import LoadingAct from './Loading/BlueArchiveLoading.mp4'
 
 import ConstantModerato from './Loading/ConstantModerato.mp3'
@@ -70,35 +67,60 @@ function Main() {
   const [momoTalkNow, setMomoTalkNow] = useState(0)
   const [whoChat, setWhoChat] = useState("")
   const [whoProfile, setWhoProfile] = useState("")
-  const [isYuukaStory, setIsYuukaStory] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const [ReadingStory, setReadingStory] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const [init, setInit] = useState(0)
   let _init = 0
   const [nowEndLoading, setNowEndLoading] = useState(false)
   
-  const Characters = [{"name": "노노미", "text": "즐거운 하루 되세요!", "profile": "https://static.miraheze.org/bluearchivewiki/a/ad/Nonomi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/3f/Nonomi_full.png"}, {"name": "노노미(수영복)", "text": " ", "profile": "https://static.miraheze.org/bluearchivewiki/9/98/Nonomi_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/01/Nonomi_%28Swimsuit%29_full.png"}
-  , {"name": "마리", "text": "늘 평안하세요", "profile": "https://static.miraheze.org/bluearchivewiki/4/4f/Mari.png", "artwork": "https://static.miraheze.org/bluearchivewiki/8/8f/Mari_full.png"}, {"name": "마리(체육복)", "text": "평화로운 축제가 되기를 기원합니다", "profile": "https://static.miraheze.org/bluearchivewiki/8/88/Mari_%28Sportswear%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/73/Mari_%28Sportswear%29_full.png"}
-  , {"name": "마키", "text": "그래피티, 너무 좋아!", "profile": "https://static.miraheze.org/bluearchivewiki/2/21/Maki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/2e/Maki_full.png"}, {"name": "모모이", "text": "게임 외길 인생", "profile": "https://static.miraheze.org/bluearchivewiki/1/18/Momoi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/dd/Momoi_full.png"}
-  , {"name": "무츠키", "text": "심심해~", "profile": "https://static.miraheze.org/bluearchivewiki/0/0b/Mutsuki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c8/Mutsuki_full.png"}, {"name": "무츠키(새해)", "text": "올해는 더 재밌을 거야~!", "profile": "https://static.miraheze.org/bluearchivewiki/c/c2/Mutsuki_%28New_Year%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b2/Mutsuki_%28New_Year%29_full.png"}
-  , {"name": "미도리", "text": "재미있는 게임 추천받아요.", "profile": "https://static.miraheze.org/bluearchivewiki/e/ee/Midori.png", "artwork": "https://static.miraheze.org/bluearchivewiki/5/5e/Midori_full.png"}
-  , {"name": "미유", "text": "좋은 날은 이제 다 끝이에요……", "profile": "https://static.miraheze.org/bluearchivewiki/a/ac/Miyu.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b8/Miyu_full.png"}, {"name": "사야", "text": "나님을 칭찬해라!", "profile": "https://static.miraheze.org/bluearchivewiki/c/ce/Saya.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a1/Saya_full.png"}
-  , {"name": "사야(사복)", "text": "나님은 뭐든지 알고 있다고!", "profile": "https://static.miraheze.org/bluearchivewiki/e/e2/Saya_%28Casual%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/06/Saya_%28Casual%29_full.png"}, {"name": "사키", "text": "말보다 행동으로", "profile": "https://static.miraheze.org/bluearchivewiki/d/d0/Saki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/1/19/Saki_full.png"}
-  , {"name": "세리나", "text": "몸이 아프면 언제든 연락주세요", "profile": "https://static.miraheze.org/bluearchivewiki/4/41/Serina.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b8/Serina_full.png"}, {"name": "세리나(크리스마스)", "text": "크리스마스를 맞아, 행복을 모두에게.", "profile": "https://static.miraheze.org/bluearchivewiki/1/19/Serina_%28Christmas%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/74/Serina_%28Christmas%29_full.png"}
-  , {"name": "세리카", "text": "대책위원회 쿠로미 세리카입니다", "profile": "https://static.miraheze.org/bluearchivewiki/c/c8/Serika.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c0/Serika_full.png"}, {"name": "세리카(새해)", "text": "모두 새해 복 많이 받으세요", "profile": "https://static.miraheze.org/bluearchivewiki/6/61/Serika_%28New_Year%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/01/Serika_%28New_Year%29_full.png"}
-  , {"name": "슌", "text": "천사들과 함께하는 삶", "profile": "https://static.miraheze.org/bluearchivewiki/1/17/Shun.png", "artwork": "https://static.miraheze.org/bluearchivewiki/4/4f/Shun_full.png"}, {"name": "슌(어린이)", "text": "탕후루가 먹고 싶네요~", "profile": "https://static.miraheze.org/bluearchivewiki/5/53/Shun_%28Kid%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/25/Shun_%28Kid%29_full.png"}
-  , {"name": "스즈미", "text": "오늘도 평안한 하루를", "profile": "https://static.miraheze.org/bluearchivewiki/0/07/Suzumi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d5/Suzumi_full.png"}, {"name": "시미코", "text": "책은 대출기간 내에 반납해주세요", "profile": "https://static.miraheze.org/bluearchivewiki/f/f4/Shimiko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/9/93/Shimiko_full.png"}
-  , {"name": "시즈코", "text": "백야당 절찬 영업중!", "profile": "https://static.miraheze.org/bluearchivewiki/7/77/Shizuko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/e/e3/Shizuko_full.png"}, {"name": "아리스", "text": "밀레니엄 게임개발부 아리스입니다.", "profile": "https://static.miraheze.org/bluearchivewiki/0/0f/Arisu.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/26/Arisu_full.png"}
-  , {"name": "아스나", "text": "최고의 봉사를 당신에게!", "profile": "https://static.miraheze.org/bluearchivewiki/9/9f/Asuna.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c7/Asuna_full.png"}, {"name": "아스나(바니걸)", "text": "최고의 즐거움을 당신에게!", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Asuna_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/35/Asuna_%28Bunny_Girl%29_full.png"}
-  , {"name": "아야네", "text": "상식이 존중받는 동아리, 대책위원회입니다", "profile": "https://static.miraheze.org/bluearchivewiki/a/a7/Ayane.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/3f/Ayane_full.png"}, {"name": "아야네(수영복)", "text": " ", "profile": "https://static.miraheze.org/bluearchivewiki/f/f6/Ayane_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/7f/Ayane_%28Swimsuit%29_full.png"}
-  , {"name": "아이리", "text": "민트초코는 정말 최고야!", "profile": "https://static.miraheze.org/bluearchivewiki/9/96/Airi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/4/4b/Airi_full.png"}, {"name": "아즈사", "text": "et omnia vanitas", "profile": "https://static.miraheze.org/bluearchivewiki/8/86/Azusa.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/06/Azusa_full.png"}
-  , {"name": "아즈사(수영복)", "text": "A brevis paradisum", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Azusa_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/2e/Azusa_%28Swimsuit%29_full.png"}
-  , {"name": "아츠코", "text": "요즘은 꽃말을 배우고 있는 중", "profile": "https://static.miraheze.org/bluearchivewiki/c/c7/Atsuko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/f/fc/Atsuko_full.png"}, {"name": "아카네", "text": "따뜻한 홍차 한 잔의 여유", "profile": "https://static.miraheze.org/bluearchivewiki/a/aa/Akane.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/cf/Akane_full.png"}
-  , {"name": "아카네(바니걸)", "text": "", "profile": "https://static.miraheze.org/bluearchivewiki/9/99/Akane_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d3/Akane_%28Bunny_Girl%29_full.png"}]
+  const Characters = [{"name": "노노미", "text": "즐거운 하루 되세요!", "school": "Abydos", "profile": "https://static.miraheze.org/bluearchivewiki/a/ad/Nonomi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/3f/Nonomi_full.png"}
+    , {"name": "노노미(수영복)", "text": " ", "school": "Abydos", "profile": "https://static.miraheze.org/bluearchivewiki/9/98/Nonomi_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/01/Nonomi_%28Swimsuit%29_full.png"}
+    , {"name": "마리", "text": "늘 평안하세요", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/4/4f/Mari.png", "artwork": "https://static.miraheze.org/bluearchivewiki/8/8f/Mari_full.png"}
+    , {"name": "마리(체육복)", "text": "평화로운 축제가 되기를 기원합니다", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/8/88/Mari_%28Sportswear%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/73/Mari_%28Sportswear%29_full.png"}
+    , {"name": "마키", "text": "그래피티, 너무 좋아!", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/2/21/Maki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/2e/Maki_full.png"}
+    , {"name": "모모이", "text": "게임 외길 인생", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/1/18/Momoi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/dd/Momoi_full.png"}
+    , {"name": "무츠키", "text": "심심해~", "school": "Gehenna", "profile": "https://static.miraheze.org/bluearchivewiki/0/0b/Mutsuki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c8/Mutsuki_full.png"}
+    , {"name": "무츠키(새해)", "text": "올해는 더 재밌을 거야~!", "school": "Gehenna", "profile": "https://static.miraheze.org/bluearchivewiki/c/c2/Mutsuki_%28New_Year%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b2/Mutsuki_%28New_Year%29_full.png"}
+    , {"name": "미도리", "text": "재미있는 게임 추천받아요.", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/e/ee/Midori.png", "artwork": "https://static.miraheze.org/bluearchivewiki/5/5e/Midori_full.png"}
+    , {"name": "미유", "text": "좋은 날은 이제 다 끝이에요……", "school": "SRT", "profile": "https://static.miraheze.org/bluearchivewiki/a/ac/Miyu.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b8/Miyu_full.png"}
+    , {"name": "미카", "text": "같이 얘기해줄 사람 모집중!", "profile": "https://static.miraheze.org/bluearchivewiki/c/c8/Mika.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a6/Mika_full.png"}
+    , {"name": "사야", "text": "나님을 칭찬해라!", "school": "Shanhaijing", "profile": "https://static.miraheze.org/bluearchivewiki/c/ce/Saya.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a1/Saya_full.png"}
+    , {"name": "사야(사복)", "text": "나님은 뭐든지 알고 있다고!", "school": "Shanhaijing", "profile": "https://static.miraheze.org/bluearchivewiki/e/e2/Saya_%28Casual%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/06/Saya_%28Casual%29_full.png"}
+    , {"name": "사키", "text": "말보다 행동으로", "school": "SRT", "profile": "https://static.miraheze.org/bluearchivewiki/d/d0/Saki.png", "artwork": "https://static.miraheze.org/bluearchivewiki/1/19/Saki_full.png"}
+    , {"name": "세리나", "text": "몸이 아프면 언제든 연락주세요", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/4/41/Serina.png", "artwork": "https://static.miraheze.org/bluearchivewiki/b/b8/Serina_full.png"}
+    , {"name": "세리나(크리스마스)", "text": "크리스마스를 맞아, 행복을 모두에게.", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/1/19/Serina_%28Christmas%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/74/Serina_%28Christmas%29_full.png"}
+    , {"name": "세리카", "text": "대책위원회 쿠로미 세리카입니다", "school": "Abydos", "profile": "https://static.miraheze.org/bluearchivewiki/c/c8/Serika.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c0/Serika_full.png"}
+    , {"name": "세리카(새해)", "text": "모두 새해 복 많이 받으세요", "school": "Abydos", "profile": "https://static.miraheze.org/bluearchivewiki/6/61/Serika_%28New_Year%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/01/Serika_%28New_Year%29_full.png"}
+    , {"name": "슌", "text": "천사들과 함께하는 삶", "school": "Shanhaijing", "profile": "https://static.miraheze.org/bluearchivewiki/1/17/Shun.png", "artwork": "https://static.miraheze.org/bluearchivewiki/4/4f/Shun_full.png"}
+    , {"name": "슌(어린이)", "text": "탕후루가 먹고 싶네요~", "school": "Shanhaijing", "profile": "https://static.miraheze.org/bluearchivewiki/5/53/Shun_%28Kid%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/25/Shun_%28Kid%29_full.png"}
+    , {"name": "스즈미", "text": "오늘도 평안한 하루를", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/0/07/Suzumi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d5/Suzumi_full.png"}
+    , {"name": "시미코", "text": "책은 대출기간 내에 반납해주세요", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/f/f4/Shimiko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/9/93/Shimiko_full.png"}
+    , {"name": "시즈코", "text": "백야당 절찬 영업중!", "school": "Hyakkiyako", "profile": "https://static.miraheze.org/bluearchivewiki/7/77/Shizuko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/e/e3/Shizuko_full.png"}
+    , {"name": "아리스", "text": "밀레니엄 게임개발부 아리스입니다.", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/0/0f/Arisu.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/26/Arisu_full.png"}
+    , {"name": "아스나", "text": "최고의 봉사를 당신에게!", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/9/9f/Asuna.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/c7/Asuna_full.png"}
+    , {"name": "아스나(바니걸)", "text": "최고의 즐거움을 당신에게!", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Asuna_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/35/Asuna_%28Bunny_Girl%29_full.png"}
+    , {"name": "아야네", "text": "상식이 존중받는 동아리, 대책위원회입니다", "school": "Abydos", "profile": "https://static.miraheze.org/bluearchivewiki/a/a7/Ayane.png", "artwork": "https://static.miraheze.org/bluearchivewiki/3/3f/Ayane_full.png"}
+    , {"name": "아야네(수영복)", "text": " ", "school": "Abydos", "profile": "https://static.miraheze.org/bluearchivewiki/f/f6/Ayane_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/7/7f/Ayane_%28Swimsuit%29_full.png"}
+    , {"name": "아이리", "text": "민트초코는 정말 최고야!", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/9/96/Airi.png", "artwork": "https://static.miraheze.org/bluearchivewiki/4/4b/Airi_full.png"}
+    , {"name": "아즈사", "text": "et omnia vanitas", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/8/86/Azusa.png", "artwork": "https://static.miraheze.org/bluearchivewiki/0/06/Azusa_full.png"}
+    , {"name": "아즈사(수영복)", "text": "A brevis paradisum", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/a/a4/Azusa_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/2/2e/Azusa_%28Swimsuit%29_full.png"}
+    , {"name": "아츠코", "text": "요즘은 꽃말을 배우고 있는 중", "school": "Arius", "profile": "https://static.miraheze.org/bluearchivewiki/c/c7/Atsuko.png", "artwork": "https://static.miraheze.org/bluearchivewiki/f/fc/Atsuko_full.png"}
+    , {"name": "아카네", "text": "따뜻한 홍차 한 잔의 여유", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/a/aa/Akane.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/cf/Akane_full.png"}
+    , {"name": "아카네(바니걸)", "text": "", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/9/99/Akane_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d3/Akane_%28Bunny_Girl%29_full.png"}
+    , {"name": "히나(수영복)", "text": "", "school": "Gehenna", "profile": "https://static.miraheze.org/bluearchivewiki/4/44/Hina_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a7/Hina_%28Swimsuit%29_full.png"}
+  ]
 
   // , {"name": "", "text": "", "profile": ""}
 
   const Yuuka_Chats = ["안녕하세요, 선생님. 유우카입니다.", "저 기억하고 계시죠?", "*아아. 당연하지.", "뭐, 그럼 다행이구요.", "선생님의 연락처를 받아두길 잘했네요.", "모모톡으로 연락드린 건 다름이 아니라······.", "지난번 샬레 탈환 당시 사용했던 탄환의 경비 처리가 늦어지고 있어서요.", "경비는 언제쯤 청구받을 수 있을까요?", "*이쪽에서 처리해야 하는 거였어······?", "물론이죠. 탄환도 공짜는 아니니까요.", "청구서를 작성해서 보내주시면 총학생회에서", "대신 잔금을 치러줄 거에요.", "청구서 양식이라면 밀레니엄 학원에서 쓰는 것이 있어요.", "다음에 샬레를 방문할 때 가져다드릴게요.", "*도와줘서 고마워.", "어려운 일도 아닌걸요.", "그럼 좋은 하루 되세요.", "&"]
   const Yuuka_Chats2 = ["선생님! 어째서 샬레의 경비 청구서에 장난감 영수증이 포함되어 있는 건가요?", "장난감 구입은 공무와는 상관없는 일이라고요!", "*하지만 일을 하는 데 꼭 필요한 물건이었는걸······.", "안 돼요! 선생님이시면 선생님답게 학생들에게 모범을 보이셔야죠!", "이 엉망인 청구서는 제가 대신 작성해 둘 테니 그렇게 아세요!", "설마······ 청구서가 작성하기 귀찮아서 일부러 엉망으로 쓴 건 아니시겠죠?", "선ㅡ생ㅡ님ㅡ!!"]
+
+  const HinaSwim_Chats = ["선생. 여름이야.", "*그러게~ 여름이네~", "*그리고 여름이라고 하면, 역시 바다지~!", "응, 바다도 있지.", "선생.", "······제대로 듣고 있는 거 맞아?", "*히나의 말을 허투루 들을 리가 없잖아!", "하아······.", "여름이라 마음이 풀어지는 건 이해하지만······.", "당신까지 그렇게 늘어져 있으면 나까지 곤란해.", "일이라는 건 언제나 어느 때나 쌓이는 법이야.", "이런 시기라도 예외는 아니지.", "풍기를 어지럽히는 학생들은 언제나 있으니까.", "······그러니 협력해줘. 선생.", "*수영복을 입었는데도 선도부장으로서 빈틈이 없구나!", "······풍기를 어지럽히는 선생부터 처리가 필요한 걸까.", "*죄송합니다.무엇이 필요하십니까?", "하아. 정말이지······.", "약속한 장소로 나와. 기다리고 있을게.", "!"]
+  const HinaSwim_Chats2 = ["오늘의 업무 협조. 고마워. 선생.", "그럼, 이번 여름 합숙에서는 반드시 같이······.", "······.", "아, 아무것도 아니야.", "*응, 같이 놀 수 있었으면 좋겠어.", "······.", "응.", "-"]
+  const HinaSwim_Chats3 = ["······선생, 오늘 저녁 약속 말인데.", "조금 뒤로 미룰 수 있을까?", "좀체 일이 끝나질 않아서 말이야.", "*그래? 그럼 어쩔 수 없지.", "아아, ······그건 오늘 했던 약속이 아니었던 걸까?", "내가 착각했던 거라면, 잊어줘.", "······응, 이해해줘서, 고마워.", "요즘 정신이 없다 보니······.", "*근데 그렇게나 바빠?", "아, 심각한 정도는 아니야.", "원래 예정되었던 스케줄을 변경하는 정도일까······.", "오늘은 순찰 업무 대신 서류 작성으로 하루를 보내게 될 것 같아.", "*이미 충분히 심각한데요?!", "뭐, 나한테는 흔히 있는 일이야.", "어쨌거나 선생과 대화를 나누고 나니 조금 후련해졌어.", "그럼 아직 남은 업무가 있다 보니 이만.", "나중에 봐.", "!"]
+  const HinaSwim_Chats4 = ["새삼스럽지만. 오늘 도와줘서 고마웠어. 선생.", "*별말씀을요.", "하지만 언제까지고 이런 식으로 폐만 끼칠 순 없으니까.", "다음번엔 좀 더 업무를 빨리 끝내두고.", "그리고, 그······.", "기왕 여기까지 온 김에······.", "응, 선생 말대로, 조금은 쉬는 것도 좋을지 모르겠네.", "그때엔 오늘처럼 또 에스코트, 부탁할게.", "-"]
+  const HinaSwim_Chats5 = ["선생, 오늘은 일찍 업무 처리를 시작했으니까.", "아마 남은 일도 오전 중에 다 마무리가 될 것 같아.", "그래서 말인데······.", "*응응! 물론입니다!", "아니······, 본론을 꺼내기 전에 먼저 대답부터 해도 곤란하거든······?", "나 참······. 어쨌거나 선생이 말했었지······.", "휴양지까지 와서, 쉬지 않는 건 엄청 아까운 일이라고.", "*응, 기왕 바다까지 왔으니까.", "······나로선 잘 이해되지 않는 이야기지만.", "선생이 그렇게까지 말한다면야······.", "응. 좋아. 오후엔 같이 어울려줄래?", "같이 바닷가에 놀러 가는 정도라면,", "그, 할 수 있을 테니까.", "*물론입니다!", "응. 그럼······. 이따 점심쯤에 봐. 선생", "&"]
 
   const StyledProgressBar = styled.div` width: ${ Math.floor(expProgress / maxExp * 100) }%; height: 5px; background-color: #59eefb`
 
@@ -162,15 +184,15 @@ function Main() {
     setIsMomoTalk(true)
   }
 
-  const onYuukaStory = () => {
+  const onStory = (name: string) => {
     onClickQuitMomo()
-    setIsYuukaStory(1)
+    setReadingStory(name)
+    setProgress(1)
     // localStorage.setItem("YuukaStoryProgress", String(parseInt(JSON.parse(localStorage.getItem("YuukaStoryProgress") || '{}')) + 1))
   }
 
   useEffect(() => {
 
-    if (localStorage.getItem("YuukaStoryProgress") == null) localStorage.setItem("YuukaStoryProgress", "0")
     if (localStorage.getItem("MemorialSelection") == null) localStorage.setItem("MemorialSelection", "Yuuka")
     if (sessionStorage.getItem("isAlreadyLoading") == null) sessionStorage.setItem("isAlreadyLoading", "false")
     if (sessionStorage.getItem("isPlaying") == null) sessionStorage.setItem("isPlaying", "false")
@@ -185,7 +207,6 @@ function Main() {
     setMaxExp(1000)
     setExpProgress(612)
     
-    console.log(localStorage.getItem("YuukaStoryProgress"))
     console.log(localStorage.getItem("MemorialSelection"))
     console.log(sessionStorage.getItem("isAlreadyLoading"))
 
@@ -259,21 +280,25 @@ function Main() {
                 <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ yuuka_gym } />
                 <div className='text-xl text-[#2c4663]'>유우카 (체육복)</div>
               </button>
-              <button className='m-4' onClick={ () => SelectMemorial("Azusa") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ azusa_mizugi } />
-                <div className='text-xl text-[#2c4663]'>아즈사 (수영복)</div>
-              </button>
               <button className='m-4' onClick={ () => SelectMemorial("Hoshino") }>
                 <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ hoshino_mizugi } />
                 <div className='text-xl text-[#2c4663]'>호시노 (수영복)</div>
               </button>
+              <button className='m-4' onClick={ () => SelectMemorial("Azusa") }>
+                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "아즈사(수영복)")].profile } />
+                <div className='text-xl text-[#2c4663]'>아즈사 (수영복)</div>
+              </button>
               <button className='m-4' onClick={ () => SelectMemorial("Atsuko") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ atsuko } />
+                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "아츠코")].profile } />
                 <div className='text-xl text-[#2c4663]'>아츠코</div>
               </button>
               <button className='m-4' onClick={ () => SelectMemorial("Mika") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ mika_profile } />
+                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "미카")].profile } />
                 <div className='text-xl text-[#2c4663]'>미카</div>
+              </button>
+              <button className='m-4' onClick={ () => SelectMemorial("Hina(Swim)") }>
+                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
+                <div className='text-xl text-[#2c4663]'>히나(수영복)</div>
               </button>
             </div>
             <div className="flex flex-col items-center">
@@ -284,28 +309,59 @@ function Main() {
         </div>
        : null }
 
-      {/* Yuuka Story Act 1 */}
-      { isYuukaStory == 1 || isYuukaStory == 2 ?
-        <video className="w-screen absolute z-20" autoPlay onEnded={ () => setIsYuukaStory(2) }>
+      {/* Yuuka Story Act 1-1 */}
+      { ReadingStory == "Yuuka" && progress == 1 || ReadingStory == "Yuuka" && progress == 2 ?
+        <video className="w-screen absolute z-20" autoPlay onEnded={ () => setProgress(2) }>
           <source src={ YuukaStory1 } type="video/mp4" />
         </video>
        : null }
       {/* Yuuka Story Act 1-2 */}
-      { isYuukaStory == 2 || isYuukaStory == 3 ?
-        <video className="w-screen absolute z-30" autoPlay onEnded={ () => setIsYuukaStory(3) }>
+      { ReadingStory == "Yuuka" && progress == 2 || ReadingStory == "Yuuka" && progress == 3 ?
+        <video className="w-screen absolute z-30" autoPlay onEnded={ () => setProgress(3) }>
           <source src={ YuukaStory2 } type="video/mp4" />
         </video>
        : null }
-       {/* Yuuka Story Act 1-3 */}
-      { isYuukaStory == 3 || isYuukaStory == 4 ?
-        <video className="w-screen absolute z-40" autoPlay onEnded={ () => setIsYuukaStory(4) }>
+      {/* Yuuka Story Act 1-3 */}
+      { ReadingStory == "Yuuka" && progress == 3 || ReadingStory == "Yuuka" && progress == 4 ?
+        <video className="w-screen absolute z-40" autoPlay onEnded={ () => setProgress(4) }>
           <source src={ YuukaStory3 } type="video/mp4" />
         </video>
        : null }
-       {/* Yuuka Story Act 1-4 */}
-      { isYuukaStory == 4 ?
-        <video className="w-screen absolute z-50" autoPlay onEnded={ () => setTimeout(()=>{ setIsYuukaStory(0); localStorage.setItem("YuukaStoryProgress", "1") }, 1000) }>
+      {/* Yuuka Story Act 1-4 */}
+      { ReadingStory == "Yuuka" && progress == 4 ?
+        <video className="w-screen absolute z-50" autoPlay onEnded={ () => setTimeout(()=>{ setProgress(0); setReadingStory("") }, 1000) }>
           <source src={ YuukaStory4 } type="video/mp4" />
+        </video>
+       : null }
+
+      {/* Hina(Swim) Story Act 1-1 */}
+      { ReadingStory == "Hina(Swim)" && progress == 1  || ReadingStory == "Hina(Swim)" && progress == 2 ?
+        <video className="h-screen w-screen flex items-start object-cover overflow-hidden z-30 absolute" autoPlay onEnded={ () => setProgress(2) }>
+          <source src={ HinaSwimStory1 } type="video/mp4" />
+        </video>
+       : null }
+      {/* Hina(Swim) Story Act 1-2 */}
+      { ReadingStory == "Hina(Swim)" && progress == 2 || ReadingStory == "Hina(Swim)" && progress == 3 ?
+        <video className="h-screen w-screen flex items-start object-cover overflow-hidden z-40 absolute" autoPlay onEnded={ () => setProgress(3) }>
+          <source src={ HinaSwimStory2 } type="video/mp4" />
+        </video>
+       : null }
+      {/* Hina(Swim) Story Act 1-3 */}
+      { ReadingStory == "Hina(Swim)" && progress == 3 || ReadingStory == "Hina(Swim)" && progress == 4 ?
+        <video className="h-screen w-screen flex items-start object-cover overflow-hidden z-50 absolute" autoPlay onEnded={ () => setProgress(4) }>
+          <source src={ HinaSwimStory3 } type="video/mp4" />
+        </video>
+       : null }
+      {/* Hina(Swim) Story Act 1-4 */}
+      { ReadingStory == "Hina(Swim)" && progress == 4 || ReadingStory == "Hina(Swim)" && progress == 5 ?
+        <video className="h-screen w-screen flex items-start object-cover overflow-hidden z-50 absolute" autoPlay onEnded={ () => setProgress(5) }>
+          <source src={ HinaSwimStory4 } type="video/mp4" />
+        </video>
+       : null }
+      {/* Hina(Swim) Story Act 1-5 */}
+      { ReadingStory == "Hina(Swim)" && progress == 5 ?
+        <video className="h-screen w-screen flex items-start object-cover overflow-hidden z-50 absolute" autoPlay onEnded={ () => setTimeout(()=>{ setProgress(0); setReadingStory("") }, 500) }>
+          <source src={ HinaSwimStory5 } type="video/mp4" />
         </video>
        : null }
 
@@ -401,63 +457,194 @@ function Main() {
 
                   {/* Hayase Yuuka */}
                   <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Yuuka") } }>
-                    <img className='rounded-full w-[68px] h-[68px] ml-4' src={ yuuka_profile } />
+                    <img className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ yuuka_profile } />
                     <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
                       <div className="name font-molu-bold text-2xl text-[#373a3d]">유우카</div>
-                      <div className="last font-molu-bold text-[22px] text-[#898c94] w-[350px] truncate flex">{ Yuuka_Chats[Yuuka_Chats.length-1] !== "&" ? Yuuka_Chats[Yuuka_Chats.length-1] : "유우카의 인연 스토리로" }</div>
+                      <div className="last font-molu text-[22px] text-[#898c94] w-[350px] truncate flex">{ Yuuka_Chats[Yuuka_Chats.length-1] !== "&" ? Yuuka_Chats[Yuuka_Chats.length-1] : "유우카의 인연 스토리로" }</div>
+                    </div>
+                  </button>
+
+                  {/* Sorasaki Hina (Swim) */}
+                  <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Hina(Swim)") } }>
+                    <img className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
+                    <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
+                      <div className="name font-molu-bold text-2xl text-[#373a3d]">히나(수영복)</div>
+                      <div className="last font-molu text-[22px] text-[#898c94] w-[350px] truncate flex">{ HinaSwim_Chats5[HinaSwim_Chats5.length-1] !== "&" ? HinaSwim_Chats5[HinaSwim_Chats5.length-1] : "히나(수영복)의 인연 스토리로" }</div>
                     </div>
                   </button>
 
                 </div>
               </div>
             
-              {/* Hayase Yuuka */}
               <div className="chat-real w-[490px] h-[534px] rounded-br-xl bg-white pt-4 overflow-y-auto overflow-x-hidden">
-                  { whoChat == "Yuuka" ?
-                    <div className="w-[500px] h-[85px] flex justify-start items-center">
-                      <img className='rounded-full w-[68px] h-[68px] ml-4' src={ yuuka_profile } />
-                      <div className="name-last ml-4 mt-[2px]">
-                        <div className="name font-molu-bold text-2xl text-[#373a3d]">유우카</div>
-                      </div>
+
+                {/* Hayase Yuuka */}
+                { whoChat == "Yuuka" ?
+                  <div className="w-[500px] h-[85px] flex justify-start items-center">
+                    <img className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ yuuka_profile } />
+                    <div className="name-last ml-4 mt-[2px]">
+                      <div className="name font-molu-bold text-2xl text-[#373a3d]">유우카</div>
                     </div>
+                  </div>
+                : null }
+
+                { whoChat == "Yuuka" && parseInt(String(localStorage.getItem("YuukaStoryProgress"))) >= 0 ?
+                  ( Yuuka_Chats.map((i) => {
+                    if (i.split('')[0] == "*") {
+                      return ( <div className='flex justify-end'>
+                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                      </div> )
+                    } else if (i.split('')[0] == "&") {
+                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Yuuka") }>
+                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                      </button> )
+                    } else {
+                      return( <div className='flex justify-start'>
+                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                      </div> )
+                    }
+                  }) )
+                  : null }
+                
+                { whoChat == "Yuuka" ?
+                  ( Yuuka_Chats2.map((i) => {
+                    if (i.split('')[0] == "*") {
+                      return ( <div className='flex justify-end'>
+                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl'>{ i.substring(1) }</div>
+                      </div> )
+                    } else if (i.split('')[0] == "&") {
+                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Yuuka") }>
+                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                      </button> )
+                    } else {
+                      return( <div className='flex justify-start'>
+                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl'>{ i }</div>
+                      </div> )
+                    }
+                  }) )
+                : null }
+
+                {/* Sorasaki Hina(Swim) */}
+                { whoChat == "Hina(Swim)" ?
+                  <div className="w-[500px] h-[85px] flex justify-start items-center">
+                    <img className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
+                    <div className="name-last ml-4 mt-[2px]">
+                      <div className="name font-molu-bold text-2xl text-[#373a3d]">히나(수영복)</div>
+                    </div>
+                  </div>
+                : null }
+
+                { whoChat == "Hina(Swim)" ?
+                  ( HinaSwim_Chats.map((i) => {
+                    if (i.split('')[0] == "*") {
+                      return ( <div className='flex justify-end'>
+                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                      </div> )
+                    } else if (i.split('')[0] == "&") {
+                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
+                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                      </button> )
+                    } else if (i.split('')[0] == "-") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[450px] h-[1px] rounded-full bg-zinc-400'></div></div> )
+                    } else if (i.split('')[0] == "!") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
+                    } else {
+                      return( <div className='flex justify-start'>
+                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                      </div> )
+                    }
+                  }) )
+                  : null }
+                
+                { whoChat == "Hina(Swim)" ?
+                  ( HinaSwim_Chats2.map((i) => {
+                    if (i.split('')[0] == "*") {
+                      return ( <div className='flex justify-end'>
+                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                      </div> )
+                    } else if (i.split('')[0] == "&") {
+                      return ( <button className='w-[500px] w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
+                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                      </button> )
+                    } else if (i.split('')[0] == "-") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[450px] h-[1px] rounded-full bg-zinc-400'></div></div> )
+                    } else if (i.split('')[0] == "!") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
+                    } else {
+                      return( <div className='flex justify-start'>
+                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                      </div> )
+                    }
+                  }) )
                   : null }
 
-                  { whoChat == "Yuuka" && parseInt(String(localStorage.getItem("YuukaStoryProgress"))) >= 0 ?
-                    ( Yuuka_Chats.map((i) => {
-                      if (i.split('')[0] == "*") {
-                        return ( <div className='flex justify-end'>
-                          <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl'>{ i.substring(1) }</div>
-                        </div> )
-                      } else if (i.split('')[0] == "&") {
-                        return ( <button className='flex justify-end' onClick={ onYuukaStory }>
-                          <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
-                        </button> )
-                      } else {
-                        return( <div className='flex justify-start'>
-                          <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl'>{ i }</div>
-                        </div> )
-                      }
-                    }) )
-                    : null }
+                { whoChat == "Hina(Swim)" ?
+                  ( HinaSwim_Chats3.map((i) => {
+                    if (i.split('')[0] == "*") {
+                      return ( <div className='flex justify-end'>
+                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                      </div> )
+                    } else if (i.split('')[0] == "&") {
+                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
+                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                      </button> )
+                    } else if (i.split('')[0] == "-") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[450px] h-[1px] rounded-full bg-zinc-400'></div></div> )
+                    } else if (i.split('')[0] == "!") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
+                    } else {
+                      return( <div className='flex justify-start'>
+                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                      </div> )
+                    }
+                  }) )
+                : null }
 
-                  { whoChat == "Yuuka" && parseInt(String(localStorage.getItem("YuukaStoryProgress"))) >= 1 ?
-                    ( Yuuka_Chats2.map((i) => {
-                      if (i.split('')[0] == "*") {
-                        return ( <div className='flex justify-end'>
-                          <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl'>{ i.substring(1) }</div>
-                        </div> )
-                      } else if (i.split('')[0] == "&") {
-                        return ( <button className='flex justify-end' onClick={ onYuukaStory }>
-                          <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
-                        </button> )
-                      } else {
-                        return( <div className='flex justify-start'>
-                          <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl'>{ i }</div>
-                        </div> )
-                      }
-                    }) )
-                  : null }
-                </div>
+                { whoChat == "Hina(Swim)" ?
+                  ( HinaSwim_Chats4.map((i) => {
+                    if (i.split('')[0] == "*") {
+                      return ( <div className='flex justify-end'>
+                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                      </div> )
+                    } else if (i.split('')[0] == "&") {
+                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
+                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                      </button> )
+                    } else if (i.split('')[0] == "-") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[450px] h-[1px] rounded-full bg-zinc-400'></div></div> )
+                    } else if (i.split('')[0] == "!") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
+                    } else {
+                      return( <div className='flex justify-start'>
+                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                      </div> )
+                    }
+                  }) )
+                : null }
+
+                { whoChat == "Hina(Swim)" ?
+                  ( HinaSwim_Chats5.map((i) => {
+                    if (i.split('')[0] == "*") {
+                      return ( <div className='flex justify-end'>
+                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                      </div> )
+                    } else if (i.split('')[0] == "&") {
+                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
+                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ hinaswim_story_btn } />
+                      </button> )
+                    } else if (i.split('')[0] == "-") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[450px] h-[1px] rounded-full bg-zinc-400'></div></div> )
+                    } else if (i.split('')[0] == "!") {
+                      return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
+                    } else {
+                      return( <div className='flex justify-start'>
+                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                      </div> )
+                    }
+                  }) )
+                : null }
+
+              </div>
             </div>
              : null }
 
@@ -468,33 +655,39 @@ function Main() {
       : null }
 
       {/* Memorial Musics */}
-      { isMusic == true && memorial == "Yuuka" && isYuukaStory == 0 ?
+      { isMusic == true && memorial == "Yuuka" && progress == 0 ?
         <audio loop autoPlay>
           <source src={ MidSummerCat } type="audio/mp3" />
         </audio>
        : null }
 
-      { isMusic == true && memorial == "Azusa" && isYuukaStory == 0 ?
+      { isMusic == true && memorial == "Azusa" && progress == 0 ?
         <audio loop autoPlay>
           <source src={ LuminousMemory } type="audio/mp3" />
         </audio>
        : null }
 
-      { isMusic == true && memorial == "Hoshino" && isYuukaStory == 0 ?
+      { isMusic == true && memorial == "Hoshino" && progress == 0 ?
         <audio loop autoPlay>
           <source src={ Theme120 } type="audio/mp3" />
         </audio>
        : null }
 
-      { isMusic == true && memorial == "Atsuko" && isYuukaStory == 0 ?
+      { isMusic == true && memorial == "Atsuko" && progress == 0 ?
         <audio loop autoPlay>
           <source src={ MidnightTrip } type="audio/mp3" />
         </audio>
        : null }
 
-      { isMusic == true && memorial == "Mika" && isYuukaStory == 0 ?
+      { isMusic == true && memorial == "Mika" && progress == 0 ?
         <audio loop autoPlay>
           <source src={ DailyRoutine247 } type="audio/mp3" />
+        </audio>
+       : null }
+
+      { isMusic == true && memorial == "Hina(Swim)" && progress == 0 ?
+        <audio loop autoPlay>
+          <source src={ MidnightTrip } type="audio/mp3" />
         </audio>
        : null }
 
@@ -531,6 +724,13 @@ function Main() {
         <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
           {/* w-screen overflow-none fixed m-0 -z-10 */}
           <source src={ Mika_Memorial } type="video/mp4" />
+        </video>
+      : null }
+
+      { memorial == "Hina(Swim)" ?
+        <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
+          {/* w-screen overflow-none fixed m-0 -z-10 */}
+          <source src={ HinaSwim_Memorial } type="video/mp4" />
         </video>
       : null }
 
