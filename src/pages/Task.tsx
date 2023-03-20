@@ -14,10 +14,10 @@ import SmallBtns from '../assets/tasks/small_btns.png'
 import AronaRoomIn from '../assets/BG_AronaRoom_In.jpg'
 import AronaChat from '../assets/tasks/chat.png'
 
-import DailyRoutine247 from './DailyRoutine247.wav'
-import VOC_BerryMilk from './berrymilk.mp3'
+import DailyRoutine247 from './assets2/DailyRoutine247.wav'
+import VOC_BerryMilk from './assets2/berrymilk.mp3'
 
-import BG_Arona from './TaskBG_Arona.mp4'
+import BG_Arona from './assets2/TaskBG_Arona.mp4'
 
 function Task() {
   const [isLoad, setIsLoad] = useState(true)

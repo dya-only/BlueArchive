@@ -18,7 +18,7 @@ import nav from '../assets/navbar.png'
 import home from '../assets/home.png'
 import InfoTitle from "../assets/info_window.png"
 
-import Future_Bossa from "./FutureBossa.wav"
+import Future_Bossa from "./assets2/FutureBossa.wav"
 
 function Students() {
   const [studentInfo, setStudentInfo] = useState("")

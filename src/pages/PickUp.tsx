@@ -12,9 +12,9 @@ import Point_200 from "../assets/200p.png"
 import PointBack from "../assets/point-back.png"
 import SelectBtn from "../assets/select_student.png"
 
-import connected_sky from "./connected_sky.wav"
-import Atsuko_PV from "./atsuko_bg.mp4"
-import Act10 from "./act10.mp4"
+import connected_sky from "./assets2/connected_sky.wav"
+import Atsuko_PV from "./assets2/atsuko_bg.mp4"
+import Act10 from "./assets2/act10.mp4"
 
 function PickUp() {
   // const [isMusic, setIsMusic] = useState(false)

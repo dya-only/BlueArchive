@@ -34,12 +34,13 @@ import yuuka_story_btn from "../assets/yuuka_story_btn.png"
 import hinaswim_story_btn from "../assets/hinaswim_story_btn.png"
 import yuuka_profile from "../assets/yuuka_profile.png"
 import TouchToStart from "../assets/touch_to_start.png"
-import Mika_Memorial from './Mika_Memorial.mp4'
-import Yuuka_Memorial from "./midsummer_cat_yuuka_gym.mp4"
-import Azusa_Memorial from "./luminous_memory_azusa_mizugi.mp4"
-import Hoshino_Memorial from "./theme120_hoshino_mizugi.mp4"
-import Atsuko_Memorial from "./Atsuko_Memorial.mp4"
-import HinaSwim_Memorial from "./hina_swim.mp4"
+import Mika_Memorial from './assets2/Mika_Memorial.mp4'
+import Yuuka_Memorial from "./assets2/midsummer_cat_yuuka_gym.mp4"
+import Azusa_Memorial from "./assets2/luminous_memory_azusa_mizugi.mp4"
+import Hoshino_Memorial from "./assets2/theme120_hoshino_mizugi.mp4"
+import Atsuko_Memorial from "./assets2/Atsuko_Memorial.mp4"
+import HinaSwim_Memorial from "./assets2/hina_swim.mp4"
+import Kazusa_Memorial from "./assets2/Kazusa_Memorial.mp4"
 
 import YuukaStory1 from "./Yuuka/YuukaStory1.mp4"
 import YuukaStory2 from "./Yuuka/YuukaStory2.mp4"
@@ -53,11 +54,12 @@ import HinaSwimStory5 from "./Hina(Swim)/HinaSwimStory5.mp4"
 import LoadingAct from './Loading/BlueArchiveLoading.mp4'
 
 import ConstantModerato from './Loading/ConstantModerato.mp3'
-import LuminousMemory from "./luminous_memory.mp3"
-import MidSummerCat from "./midsummer_cat.mp3"
-import Theme120 from "./theme_120.mp3"
-import MidnightTrip from "./MidnightTrip.mp3"
-import DailyRoutine247 from './DailyRoutine247.wav'
+import LuminousMemory from "./assets2/luminous_memory.mp3"
+import MidSummerCat from "./assets2/midsummer_cat.mp3"
+import Theme120 from "./assets2/theme_120.mp3"
+import MidnightTrip from "./assets2/MidnightTrip.mp3"
+import DailyRoutine247 from './assets2/DailyRoutine247.wav'
+import Theme103 from './assets2/theme_103.mp3'
 
 function Main() {
   const [memorial, setMemorial] = useState("")
@@ -113,6 +115,8 @@ function Main() {
     , {"name": "아카네", "text": "따뜻한 홍차 한 잔의 여유", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/a/aa/Akane.png", "artwork": "https://static.miraheze.org/bluearchivewiki/c/cf/Akane_full.png"}
     , {"name": "아카네(바니걸)", "text": "", "school": "Millennium", "profile": "https://static.miraheze.org/bluearchivewiki/9/99/Akane_%28Bunny_Girl%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d3/Akane_%28Bunny_Girl%29_full.png"}
     , {"name": "히나(수영복)", "text": "", "school": "Gehenna", "profile": "https://static.miraheze.org/bluearchivewiki/4/44/Hina_%28Swimsuit%29.png", "artwork": "https://static.miraheze.org/bluearchivewiki/a/a7/Hina_%28Swimsuit%29_full.png"}
+    , {"name": "카즈사", "text": "방과후 디저트부 부원입니다.", "school": "Trinity", "profile": "https://static.miraheze.org/bluearchivewiki/b/b3/Kazusa.png", "artwork": ""}
+    , {"name": "와카모", "text": "후훗, 언제나 당신 곁에♡", "school": "Hyakkiyako", "profile": "https://static.miraheze.org/bluearchivewiki/a/a7/Wakamo.png", "artwork": "https://static.miraheze.org/bluearchivewiki/d/d3/Wakamo_full.png"}
   ]
 
   // , {"name": "", "text": "", "profile": ""}
@@ -277,7 +281,7 @@ function Main() {
       { JSON.parse(isMusic.toString()) == false ?
         <div className="absolute w-full h-full backdrop-brightness-[0.2] flex items-center justify-center z-50 drop-shadow-2xl">
           <div className="flex flex-col justify-center items-center w-[600px] h-[300px] bg-white rounded-2xl">
-            <div className="font-molu text-xl mb-8">※풀스크린,전체화면으로 설정해주세요.<br/>사운드 재생을 위해 확인 버튼을 눌러주세요.<br/><br/>영상의 용량 문제로 인해 메모리얼 재생 중 약간의 지연이 생길 수 있습니다.</div>
+            <div className="font-molu text-xl mb-8">※전체화면으로 설정해주세요<br/>사운드 재생을 위해 확인 버튼을 누르시면 시작합니다.<br/><br/>영상의 용량 문제로 인해 메모리얼 재생 중 약간의 지연이 생길 수 있습니다.</div>
             <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg' onClick={onMusic}>확인</button>
           </div>
         </div>
@@ -286,18 +290,18 @@ function Main() {
       {/* Select Memorial  */}
       { isSelectingMemorial == true ?
         <div className="fixed w-full h-full backdrop-brightness-[0.8] flex items-center justify-center z-50 drop-shadow-2xl">
-          <div className=" flex flex-col justify-center w-[650px] h-[400px] bg-white rounded-2xl">
-            <button className="quit z-20 -mt-[349px] fixed w-[600px] flex justify-end ml-9 transition duration-100 active:scale-[99%] cursor-pointer" onClick={ onClickQuit }>
+          <div className=" flex flex-col justify-center w-[850px] h-[600px] bg-white rounded-2xl">
+            <button className="quit z-20 -mt-[546px] fixed w-[50px] flex justify-end ml-[786px] transition duration-100 active:scale-[99%] cursor-pointer" onClick={ onClickQuit }>
               <FontAwesomeIcon className='text-5xl text-[#2c4663]' icon={faXmark} />
             </button>
-            <div className="fixed title flex pt-[30px] justify-center flex-col -mt-[370px]">
+            <div className="fixed title flex justify-center flex-col pt-[30px] w-[850px] -mt-[570px]">
               <div className='flex justify-center'>
                 <div className="font-molu-bold text-3xl text-[#2c4663] w-[115px] border-b-[4px] border-[#ffe03d]">당번 선택</div>
-                  <button className="help transition duration-100 active:scale-90 text-white bg-[#2a4566] font-bold text-xl w-8 h-8 ml-2 rounded-md transition duration-300 hover:opacity-70">?</button>
+                  <button className="help transition duration-100 active:scale-90 text-white bg-[#2a4566] font-bold text-xl w-8 h-8 ml-2 rounded-md">?</button>
                 </div>
-              <div className="border-b-[2px] border-gray-300 w-[650px]"></div>
+              <div className="border-b-[2px] border-gray-300 w-[850px]"></div>
             </div>
-            <div className="cards flex flex-wrap overflow-hidden overflow-y-visible justify-center items-start w-[650px] h-[280px] mt-12">
+            <div className="cards flex flex-wrap overflow-hidden overflow-y-visible justify-center items-start w-[850px] h-[400px] -mt-4 pt-4">
               <button className='m-4' onClick={ () => SelectMemorial("Yuuka") }>
                 <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ yuuka_gym } />
                 <div className='text-xl text-[#2c4663]'>유우카 (체육복)</div>
@@ -322,11 +326,15 @@ function Main() {
                 <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
                 <div className='text-xl text-[#2c4663]'>히나(수영복)</div>
               </button>
+              <button className='m-4' onClick={ () => SelectMemorial("Kazusa") }>
+                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "카즈사")].profile } />
+                <div className='text-xl text-[#2c4663]'>카즈사</div>
+              </button>
             </div>
             <div className="flex flex-col items-center">
-              <div className="border-b-[2px] border-gray-300 w-[650px]"></div>
-              <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg mt-4 mb-4' onClick={onClickQuit}>확인</button>
-            </div>  
+              <div className="border-b-[2px] border-gray-300 w-[850px]"></div>
+              <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg mt-6 -mb-48' onClick={onClickQuit}>확인</button>
+            </div>
           </div>
         </div>
        : null }
@@ -510,7 +518,7 @@ function Main() {
                   </div>
                 : null }
 
-                { whoChat == "Yuuka" && parseInt(String(localStorage.getItem("YuukaStoryProgress"))) >= 0 ?
+                { whoChat == "Yuuka" ?
                   ( Yuuka_Chats.map((i) => {
                     if (i.split('')[0] == "*") {
                       return ( <div className='flex justify-end'>
@@ -713,6 +721,12 @@ function Main() {
         </audio>
        : null }
 
+      { isMusic == true && memorial == "Kazusa" && progress == 0 ?
+        <audio loop autoPlay>
+          <source src={ Theme103 } type="audio/mp3" />
+        </audio>
+       : null }
+
       {/* Memorial Acts */}
       { memorial == "Yuuka" ?
         <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
@@ -755,6 +769,12 @@ function Main() {
           <source src={ HinaSwim_Memorial } type="video/mp4" />
         </video>
       : null }
+      { memorial == "Kazusa" ?
+        <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
+          {/* w-screen overflow-none fixed m-0 -z-10 */}
+          <source src={ Kazusa_Memorial } type="video/mp4" />
+        </video>
+       : null }
 
       {/* <Link to="/pickup">
         <button className='btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 m-4 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg'>모집</button>
