@@ -67,7 +67,7 @@ import Theme103 from './assets2/theme_103.mp3'
 
 function Main() {
   const [memorial, setMemorial] = useState("")
-  const [level, setLevel] = useState(48)
+  const [level, setLevel] = useState(79)
   const [isMusic, setIsMusic] = useState(false)
   const [isSelectingMemorial, setIsSelectingMemorial] = useState(false)
   const [expProgress, setExpProgress] = useState(0)
@@ -246,7 +246,7 @@ function Main() {
       {/* <Loading /> */}
       { memorial == "Loading" ?
         <button className='w-screen h-screen z-50 cursor-default fixed flex justify-center items-end' onClick={ ()=>{ onTouch() } }>
-          <video className="w-screen object-cover z-40" muted autoPlay loop>
+          <video className="w-screen h-screen object-cover z-40" muted autoPlay loop>
             <source src={ LoadingAct } type="video/mp4" />
           </video>
 
@@ -407,51 +407,50 @@ function Main() {
 
       {/* MoMo Talk */}
       { isMomoTalk ?
-      <div className="fixed w-full h-full backdrop-brightness-[0.4] flex items-center justify-center z-50 drop-shadow-2xl">
+      <div className="fixed w-screen h-screen backdrop-brightness-[0.4] flex items-center justify-center z-50">
         <div className="flex flex-col justify-center items-center">
-          <div className="window-title w-[1100px] h-[60px] bg-[#fa91a5] rounded-t-xl flex justify-between items-center">
+          <div id="momo-title" className="window-title w-[1100px] h-[60px] bg-[#fa91a5] rounded-t-xl flex justify-between items-center">
             <div className='flex justify-center items-center'>
-              <img className='w-13 ml-1' src={ momo_logo } />
-              <div className="title text-white text-3xl font-molu-bold mt-1">MomoTalk</div>
+              <img id="momo-logo" className='w-13 ml-1' src={ momo_logo } />
+              <div id="momo-title-text" className="title text-white text-3xl font-molu-bold mt-1">MomoTalk</div>
             </div>
-            <button className="quit mr-4 transition duration-100 active:scale-[99%] cursor-pointer" onClick={ onClickQuitMomo }>
-              <FontAwesomeIcon className='text-5xl text-white' icon={faXmark} />
+            <button id="momo-x" className="quit mr-4 transition duration-100 active:scale-[99%] cursor-pointer" onClick={ onClickQuitMomo }>
+              <FontAwesomeIcon id="momo-x-icon" className='text-5xl text-white' icon={faXmark} />
             </button>
           </div>
-          <div className=" flex justify-start w-[1100px] h-[550px] bg-white rounded-b-xl">
-          
-            <div className="left-bar bg-[#4c5b70] w-[110px] h-[550px] [990px] rounded-bl-xl">
-            <button className='chat_btn' onClick={ ()=>setMomoTalkNow(0) }>
-                <div className="square w-[110px] h-[105px] flex justify-center items-center hover:bg-[#647789] opacity-50 hover:opacity-100">
-                  <img className='w-[50px]' src={ student_logo } />
+          <div id="momo-win" className="flex justify-start w-[1100px] h-[550px] bg-white rounded-b-xl">
+            <div id="momo-left" className="left-bar bg-[#4c5b70] w-[110px] h-[550px] rounded-bl-xl">
+              <button className='chat_btn' onClick={ ()=>setMomoTalkNow(0) }>
+                <div id="momo-btn" className="square w-[110px] h-[105px] flex justify-center items-center hover:bg-[#647789] opacity-50 hover:opacity-100">
+                  <img id="momo-btn-icon" className='w-[50px]' src={ student_logo } />
                 </div>
               </button>
               <button className='chat_btn' onClick={ ()=>setMomoTalkNow(1) }>
-                <div className="square w-[110px] h-[105px] flex justify-center items-center hover:bg-[#647789] opacity-50 hover:opacity-100">
-                  <img className='w-[55px]' src={ talk_logo } />
+                <div id="momo-btn" className="square w-[110px] h-[105px] flex justify-center items-center hover:bg-[#647789] opacity-50 hover:opacity-100">
+                  <img id="momo-btn-icon" className='w-[55px]' src={ talk_logo } />
                 </div>
               </button>
             </div>
 
             { momoTalkNow == 0 ?
               <div className='flex justify-center items-center'>
-                <div className="chat-list w-[500px] h-[550px] bg-[#f3f7f8] border-r-[1px] border-zinc-200">
-                  <div className="top-bar w-[500px] h-[70px] flex items-center justify-around ml-2">
-                    <div className="text text-2xl font-molu-bold text-[#373a3d] pt-1">학생({ Characters.length })</div>
-                    <img className='h-[70px] mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_name_btn } />
-                    <img className='h-[70px] -ml-10 mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_down_btn } />
+                <div id="chat-list" className="chat-list w-[500px] h-[550px] bg-[#f3f7f8] border-r-[1px] border-zinc-200">
+                  <div id="top-bar" className="top-bar w-[500px] h-[70px] flex items-center justify-around ml-2">
+                    <div id="momo-top-text" className="text text-2xl font-molu-bold text-[#373a3d] pt-1">학생({ Characters.length })</div>
+                    <img id="momo-top-btn" className='h-[70px] mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_name_btn } />
+                    <img id="momo-top-btn2" className='h-[70px] -ml-10 mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_down_btn } />
                   </div>
-                  <div className="line-contain w-[500px] flex justify-center">
+                  <div id="momo-line" className="line-contain w-[500px] flex justify-center">
                     <div className="line w-[460px] h-[1.5px] bg-zinc-300"></div>
                   </div>
-                  <div className="students mt-2 h-[460px] w-[500px] overflow-y-auto overflow-x-hidden">
+                  <div id="momo-students" className="students mt-2 h-[460px] w-[500px] overflow-y-auto overflow-x-hidden">
                     { Characters.map((i) => {
-                      return ( 
-                        <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectStudent(i.name) } }>
-                          <img className='rounded-full object-cover w-[68px] h-[68px] ml-4' src={ i.profile } />
+                      return (
+                        <button id="momo-one" className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectStudent(i.name) } }>
+                          <img id="momo-profile" className='rounded-full object-cover w-[68px] h-[68px] ml-4' src={ i.profile } />
                           <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
-                            <div className="name font-molu-bold text-2xl text-[#373a3d]">{ i.name }</div>
-                            <div className="last font-molu-bold text-[22px] text-[#898c94] w-[350px] truncate flex">{ i.text }</div>
+                            <div id="momo-name" className="name font-molu-bold text-2xl text-[#373a3d]">{ i.name }</div>
+                            <div id="momo-state" className="last font-molu-bold text-[22px] text-[#898c94] w-[350px] truncate flex">{ i.text }</div>
                           </div>
                         </button>
                       )
@@ -460,20 +459,20 @@ function Main() {
                   </div>
                 </div>
 
-                <div className="chat-real w-[490px] h-[534px] rounded-br-xl bg-white pt-4 overflow-y-auto overflow-x-hidden">
+                <div id="momo-chat-real" className="chat-real w-[490px] h-[534px] rounded-br-xl bg-white pt-4 overflow-y-auto overflow-x-hidden">
                   { whoProfile !== "" ?
                     <div className="student-profile flex flex-col justify-center items-center w-[500] h-[560] bg-white">
                       <div className='img-profile flex items-center flex-col'>
-                        <img className='rounded-full object-cover w-[125px] h-[125px]' src={ String(Characters[Characters.findIndex(e => e.name == whoProfile)].profile) } />
-                        <div className="name text-[#4c5052] text-[24px] mt-1">{ String(Characters[Characters.findIndex(e => e.name == whoProfile)].name) }</div>
-                        <div className="status text-[#818488] text-[22px] -mt-2 font-molu">{ String(Characters[Characters.findIndex(e => e.name == whoProfile)].text) }</div>
+                        <img id="momo-profile-img" className='rounded-full object-cover w-[125px] h-[125px]' src={ String(Characters[Characters.findIndex(e => e.name == whoProfile)].profile) } />
+                        <div id="momo-profile-name" className="name text-[#4c5052] text-[24px] mt-1">{ String(Characters[Characters.findIndex(e => e.name == whoProfile)].name) }</div>
+                        <div id="momo-profile-state" className="status text-[#818488] text-[22px] -mt-2 font-molu">{ String(Characters[Characters.findIndex(e => e.name == whoProfile)].text) }</div>
                       </div>
                       <div className="table flex justify-center">
                         <div className="rank-bonus mt-2">
-                          <div className="in-nav rounded-t-xl text-[#4175a0] text-2xl flex justify-center p-[7px] bg-[#daedfc] w-[460px] border-2 border-[#c5d0d5] border-b-[#daedfc]">인연 랭크 보너스</div>
-                          <div className="in-nav text-[#dbdbdb] text-xl font-molu flex justify-center items-center p-[7px] bg-white h-[110px] w-[460px] border-x-2 border-[#c5d0d5]">보너스 없음</div>
-                          <div className="in-nav text-[#4175a0] text-2xl flex justify-center p-[7px] bg-[#daedfc] w-[460px] border-x-2 border-[#c5d0d5]">보너스 대상</div>
-                          <div className="in-nav text-[#dbdbdb] text-xl font-molu flex justify-center items-center p-[7px] bg-white h-[110px] w-[460px] border-2 border-[#c5d0d5] border-t-[#daedfc] rounded-b-xl">추가 대상 없음</div>
+                          <div id="in-nav" className="in-nav rounded-t-xl text-[#4175a0] text-2xl flex justify-center p-[7px] bg-[#daedfc] w-[460px] border-2 border-[#c5d0d5] border-b-[#daedfc]">인연 랭크 보너스</div>
+                          <div id="in-nav2" className="in-nav text-[#dbdbdb] text-xl font-molu flex justify-center items-center p-[7px] bg-white h-[110px] w-[460px] border-x-2 border-[#c5d0d5]">보너스 없음</div>
+                          <div id="in-nav3" className="in-nav text-[#4175a0] text-2xl flex justify-center p-[7px] bg-[#daedfc] w-[460px] border-x-2 border-[#c5d0d5]">보너스 대상</div>
+                          <div id="in-nav4" className="in-nav text-[#dbdbdb] text-xl font-molu flex justify-center items-center p-[7px] bg-white h-[110px] w-[460px] border-2 border-[#c5d0d5] border-t-[#daedfc] rounded-b-xl">추가 대상 없음</div>
                         </div>
                       </div>
                     </div>
@@ -484,45 +483,45 @@ function Main() {
 
             { momoTalkNow == 1 ?
             <div className='flex justify-center items-center'>
-              <div className="chat-list w-[500px] h-[550px] bg-[#f3f7f8] border-r-[1px] border-zinc-200">
-                <div className="top-bar w-[500px] h-[70px] flex items-center justify-around ml-2">
-                  <div className="text text-2xl font-molu-bold text-[#373a3d] pt-1">안 읽은 메시지(0)</div>
-                  <img className='h-[70px] mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_latest_btn } />
-                  <img className='h-[70px] -ml-10 mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_down_btn } />
+              <div id="chat-list" className="chat-list w-[500px] h-[550px] bg-[#f3f7f8] border-r-[1px] border-zinc-200">
+                <div id="top-bar" className="top-bar w-[500px] h-[70px] flex items-center justify-around ml-2">
+                  <div id="momo-top-text" className="text text-2xl font-molu-bold text-[#373a3d] pt-1">안 읽은 메시지(0)</div>
+                  <img id="momo-top-btn3" className='h-[70px] mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_latest_btn } />
+                  <img id="momo-top-btn4" className='h-[70px] -ml-10 mt-5 transition duration-100 active:scale-90 cursor-pointer' src={ momo_down_btn } />
                 </div>
-                <div className="line-contain w-[500px] flex justify-center">
+                <div id="momo-line" className="line-contain w-[500px] flex justify-center">
                   <div className="line w-[460px] h-[1.5px] bg-zinc-300"></div>
                 </div>
-                <div className="chats mt-2">
+                <div id="momo-students" className="chats mt-2">
 
                   {/* Hayase Yuuka */}
-                  <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Yuuka") } }>
-                    <img className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ yuuka_profile } />
+                  <button id="momo-one" className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Yuuka") } }>
+                    <img id="momo-profile" className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ yuuka_profile } />
                     <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
-                      <div className="name font-molu-bold text-2xl text-[#373a3d]">유우카</div>
-                      <div className="last font-molu text-[22px] text-[#898c94] w-[350px] truncate flex">{ Yuuka_Chats[Yuuka_Chats.length-1] !== "&" ? Yuuka_Chats[Yuuka_Chats.length-1] : "유우카의 인연 스토리로" }</div>
+                      <div id="momo-name" className="name font-molu-bold text-2xl text-[#373a3d]">유우카</div>
+                      <div id="momo-state" className="last font-molu text-[22px] text-[#898c94] w-[350px] truncate flex">{ Yuuka_Chats[Yuuka_Chats.length-1] !== "&" ? Yuuka_Chats[Yuuka_Chats.length-1] : "유우카의 인연 스토리로" }</div>
                     </div>
                   </button>
 
                   {/* Sorasaki Hina (Swim) */}
-                  <button className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Hina(Swim)") } }>
-                    <img className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
+                  <button id="momo-one" className="chat-one w-[500px] h-[85px] hover:bg-[#dce5ec] flex justify-start items-center" onClick={ () => { SelectChat("Hina(Swim)") } }>
+                    <img id="momo-profile" className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
                     <div className="name-last ml-4 mt-[2px] flex flex-col items-start">
-                      <div className="name font-molu-bold text-2xl text-[#373a3d]">히나(수영복)</div>
-                      <div className="last font-molu text-[22px] text-[#898c94] w-[350px] truncate flex">{ HinaSwim_Chats5[HinaSwim_Chats5.length-1] !== "&" ? HinaSwim_Chats5[HinaSwim_Chats5.length-1] : "히나(수영복)의 인연 스토리로" }</div>
+                      <div id="momo-name" className="name font-molu-bold text-2xl text-[#373a3d]">히나(수영복)</div>
+                      <div id="momo-state" className="last font-molu text-[22px] text-[#898c94] w-[350px] truncate flex">{ HinaSwim_Chats5[HinaSwim_Chats5.length-1] !== "&" ? HinaSwim_Chats5[HinaSwim_Chats5.length-1] : "히나(수영복)의 인연 스토리로" }</div>
                     </div>
                   </button>
 
                 </div>
               </div>
             
-              <div className="chat-real w-[490px] h-[534px] rounded-br-xl bg-white pt-4 overflow-y-auto overflow-x-hidden">
+              <div id="momo-chat-real" className="chat-real w-[490px] h-[534px] rounded-br-xl bg-white pt-4 overflow-y-auto overflow-x-hidden">
 
                 {/* Hayase Yuuka */}
                 { whoChat == "Yuuka" ?
-                  <div className="w-[500px] h-[85px] flex justify-start items-center">
-                    <img className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ yuuka_profile } />
-                    <div className="name-last ml-4 mt-[2px]">
+                  <div id="momo-chat-profile" className="w-[500px] h-[85px] flex justify-start items-center">
+                    <img id="momo-chat-profile-img" className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ yuuka_profile } />
+                    <div id="momo-chat-profile-name" className="name-last ml-4 mt-[2px]">
                       <div className="name font-molu-bold text-2xl text-[#373a3d]">유우카</div>
                     </div>
                   </div>
@@ -532,15 +531,15 @@ function Main() {
                   ( Yuuka_Chats.map((i) => {
                     if (i.split('')[0] == "*") {
                       return ( <div className='flex justify-end'>
-                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
                       </div> )
                     } else if (i.split('')[0] == "&") {
-                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Yuuka") }>
-                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                      return ( <button id="momo-story-btn" className='w-[500px] flex justify-end' onClick={ () => onStory("Yuuka") }>
+                        <img id="momo-story" className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
                       </button> )
                     } else {
                       return( <div className='flex justify-start'>
-                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
                       </div> )
                     }
                   }) )
@@ -550,7 +549,7 @@ function Main() {
                   ( Yuuka_Chats2.map((i) => {
                     if (i.split('')[0] == "*") {
                       return ( <div className='flex justify-end'>
-                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl'>{ i.substring(1) }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl'>{ i.substring(1) }</div>
                       </div> )
                     } else if (i.split('')[0] == "&") {
                       return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Yuuka") }>
@@ -558,7 +557,7 @@ function Main() {
                       </button> )
                     } else {
                       return( <div className='flex justify-start'>
-                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl'>{ i }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl'>{ i }</div>
                       </div> )
                     }
                   }) )
@@ -566,9 +565,9 @@ function Main() {
 
                 {/* Sorasaki Hina(Swim) */}
                 { whoChat == "Hina(Swim)" ?
-                  <div className="w-[500px] h-[85px] flex justify-start items-center">
-                    <img className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
-                    <div className="name-last ml-4 mt-[2px]">
+                  <div id="momo-chat-profile" className="w-[500px] h-[85px] flex justify-start items-center">
+                    <img id="momo-chat-profile-img" className='rounded-full w-[68px] h-[68px] ml-4 object-cover' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
+                    <div id="momo-chat-profile-name" className="name-last ml-4 mt-[2px]">
                       <div className="name font-molu-bold text-2xl text-[#373a3d]">히나(수영복)</div>
                     </div>
                   </div>
@@ -578,11 +577,11 @@ function Main() {
                   ( HinaSwim_Chats.map((i) => {
                     if (i.split('')[0] == "*") {
                       return ( <div className='flex justify-end'>
-                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
                       </div> )
                     } else if (i.split('')[0] == "&") {
-                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
-                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
+                      return ( <button id="momo-story-btn" className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
+                        <img id="momo-story" className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ yuuka_story_btn } />
                       </button> )
                     } else if (i.split('')[0] == "-") {
                       return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[450px] h-[1px] rounded-full bg-zinc-400'></div></div> )
@@ -590,7 +589,7 @@ function Main() {
                       return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
                     } else {
                       return( <div className='flex justify-start'>
-                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
                       </div> )
                     }
                   }) )
@@ -600,7 +599,7 @@ function Main() {
                   ( HinaSwim_Chats2.map((i) => {
                     if (i.split('')[0] == "*") {
                       return ( <div className='flex justify-end'>
-                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
                       </div> )
                     } else if (i.split('')[0] == "&") {
                       return ( <button className='w-[500px] w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
@@ -612,7 +611,7 @@ function Main() {
                       return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
                     } else {
                       return( <div className='flex justify-start'>
-                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
                       </div> )
                     }
                   }) )
@@ -622,7 +621,7 @@ function Main() {
                   ( HinaSwim_Chats3.map((i) => {
                     if (i.split('')[0] == "*") {
                       return ( <div className='flex justify-end'>
-                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
                       </div> )
                     } else if (i.split('')[0] == "&") {
                       return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
@@ -634,7 +633,7 @@ function Main() {
                       return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
                     } else {
                       return( <div className='flex justify-start'>
-                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
                       </div> )
                     }
                   }) )
@@ -644,7 +643,7 @@ function Main() {
                   ( HinaSwim_Chats4.map((i) => {
                     if (i.split('')[0] == "*") {
                       return ( <div className='flex justify-end'>
-                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
                       </div> )
                     } else if (i.split('')[0] == "&") {
                       return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
@@ -656,7 +655,7 @@ function Main() {
                       return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
                     } else {
                       return( <div className='flex justify-start'>
-                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
                       </div> )
                     }
                   }) )
@@ -666,11 +665,11 @@ function Main() {
                   ( HinaSwim_Chats5.map((i) => {
                     if (i.split('')[0] == "*") {
                       return ( <div className='flex justify-end'>
-                        <div className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[450px] bg-[#498bc7] rounded-xl text-white text-xl font-molu'>{ i.substring(1) }</div>
                       </div> )
                     } else if (i.split('')[0] == "&") {
-                      return ( <button className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
-                        <img className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ hinaswim_story_btn } />
+                      return ( <button id="momo-story-btn" className='w-[500px] flex justify-end' onClick={ () => onStory("Hina(Swim)") }>
+                        <img id="momo-story" className='w-[400px] mr-4 cursor-pointer transition duration-100 active:scale-90' src={ hinaswim_story_btn } />
                       </button> )
                     } else if (i.split('')[0] == "-") {
                       return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[450px] h-[1px] rounded-full bg-zinc-400'></div></div> )
@@ -678,7 +677,7 @@ function Main() {
                       return ( <div className='flex justify-center mt-8 mb-8'><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div><div className='w-[8px] h-[8px] rounded-2xl mr-4 bg-zinc-400'></div></div> )
                     } else {
                       return( <div className='flex justify-start'>
-                        <div className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
+                        <div id="momo-one-chat" className='one-chat p-2 m-2 max-w-[365px] bg-[#4c586d] rounded-xl text-white text-xl font-molu'>{ i }</div>
                       </div> )
                     }
                   }) )

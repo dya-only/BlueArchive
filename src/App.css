@@ -393,6 +393,149 @@
   #yes-btn {
     width: 140px;
   }
+  #momo-title {
+    width: 680px;
+    height: 40px;
+  }
+  #momo-logo {
+    width: 30px;
+    margin-right: 4px;
+  }
+  #momo-title-text {
+    font-size: 20px;
+  }
+  #momo-x {
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+  #momo-x-icon {
+    font-size: 30px;
+  }
+  #momo-win {
+    width: 680px;
+    height: 300px;
+  }
+  #momo-left {
+    width: 60px;
+    height: 300px;
+  }
+  #momo-btn {
+    width: 60px;
+    height: 60px;
+  }
+  #momo-btn-icon {
+    width: 30px;
+  }
+  #chat-list {
+    width: 310px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #top-bar {
+    width: 310px;
+    height: 50px;
+  }
+  #momo-top-text {
+    font-size: 16px;
+  }
+  #momo-top-btn {
+    height: 50px;
+  }
+  #momo-top-btn2 {
+    height: 50px;
+  }
+  #momo-top-btn3 {
+    height: 50px;
+    margin-right: 20px;
+  }
+  #momo-top-btn4 {
+    height: 50px;
+  }
+  #momo-students {
+    width: 310px;
+  }
+  #momo-line {
+    width: 295px;
+  }
+  #momo-one {
+    margin-left: 1px;
+    height: 70px;
+  }
+  #momo-profile {
+    width: 50px;
+    height: 50px;
+  }
+  #momo-name {
+    font-size: 18px;
+  }
+  #momo-state {
+    font-size: 16px;
+    margin-top: -6px;
+  }
+  #momo-chat-real {
+    width: 310px;
+    height: 300px;
+  }
+  #momo-profile-img {
+    width: 80px;
+    height: 80px;
+  }
+  #momo-profile-name {
+    font-size: 18px;
+  }
+  #momo-profile-state {
+    font-size: 16px;
+  }
+  #in-nav {
+    width: 300px;
+    font-size: 16px;
+    padding: 0;
+  }
+  #in-nav2 {
+    width: 300px;
+    height: 80px;
+    font-size: 16px;
+    padding: 0;
+  }
+  #in-nav3 {
+    width: 300px;
+    font-size: 16px;
+    padding: 0;
+  }
+  #in-nav4 {
+    width: 300px;
+    height: 80px;
+    font-size: 16px;
+    padding: 0;
+  }
+  #momo-chat-profile {
+    width: 310px;
+    height: 80px;
+  }
+  #momo-chat-profile-img {
+    width: 50px;
+    height: 50px;
+  }
+  #momo-chat-profile-name {
+    font-size: 20px;
+  }
+  #momo-one-chat {
+    border-radius: 10px;
+    max-width: 250px;
+    padding: 2px;
+    margin: 4px;
+    font-size: 15px;
+    /*line-height: 25px;*/
+  }
+  #momo-story-btn {
+    width: 310px;
+  }
+  #momo-story {
+    width: 260px;
+    margin: 4px;
+  }
 }
 
 @tailwind base;
