@@ -347,6 +347,7 @@
   }
   #sel-under-line {
     width: 480px;
+    margin-left: 10px;
   }
   #memorial-card {
     width: 90px;
@@ -379,8 +380,8 @@
     height: 200px;
     overflow: hidden;
     overflow-y: visible;
-    padding-top: 8px;
-    background: #F7F7F6;
+    padding-top: 12px;
+    background: #d3d4d1;
   }
   #memorial-btn {
     margin: 1px;

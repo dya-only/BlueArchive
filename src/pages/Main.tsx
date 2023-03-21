@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faEnvelope,  } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faEnvelope, faMaximize } from '@fortawesome/free-solid-svg-icons'
 
 import TaskBar from '../components/TaskBar'
 
 import Sub_bg from "../assets/sub_bg.png"
+import fixBG from "./assets2/fix.jpg"
 import ProfileBar from "../assets/profile_bar.png"
 import Notice from "../assets/notice.png"
 import MomoTalk from "../assets/momo.png"
@@ -24,6 +25,7 @@ import MCoinItemMenu from '../assets/m_coin_item_menu.png'
 import plus from '../assets/plus.png'
 import memorialCount from './assets2/memorial-count.png'
 import YesBtn from './assets2/yes-btn.png'
+import CancelBtn from './assets2/cancel-btn.png'
 import yuuka_gym from "../assets/yuuka_gym.png"
 import hoshino_mizugi from "../assets/hoshino_mizugi.png"
 import momo_logo from "../assets/momo_logo.png"
@@ -244,7 +246,7 @@ function Main() {
       {/* <Loading /> */}
       { memorial == "Loading" ?
         <button className='w-screen h-screen z-50 cursor-default fixed flex justify-center items-end' onClick={ ()=>{ onTouch() } }>
-          <video className="h-screen object-cover z-40" muted autoPlay loop>
+          <video className="w-screen object-cover z-40" muted autoPlay loop>
             <source src={ LoadingAct } type="video/mp4" />
           </video>
 
@@ -276,7 +278,9 @@ function Main() {
 
       {/* FullScreen */}
       <div className="w-screen flex justify-end fixed md:mt-[80px] pr-4" id="full-top">
-        <button id="fullscreen" className='pl-2 pr-2 pt-1 pb-1 m-2 text-2xl text-[#16365C] bg-[#CBCCFF] rounded-md shadow-lg transition duration-100 active:scale-90' onClick={FullScreen}>전체화면</button>
+        <button id="fullscreen" className='flex justify-center items-center p-1 m-2 text-2xl text-[#16365C] bg-[#CBCCFF] rounded-md shadow-lg transition duration-100 active:scale-90' onClick={FullScreen}>
+          <FontAwesomeIcon className='text-lg' icon={faMaximize} />
+        </button>
       </div>
 
       {/* Music Button */}
@@ -292,8 +296,8 @@ function Main() {
       {/* Select Memorial  */}
       { isSelectingMemorial == true ?
         <div className="fixed w-full h-full backdrop-brightness-[0.8] flex items-center justify-center z-50">
-          <div className="flex flex-col justify-center w-[850px] h-[650px] bg-white rounded-2xl" id="memorial-window">
-            <button id="xbtn" className="quit z-20 -mt-[596px] fixed w-[50px] flex justify-end ml-[786px] transition duration-100 active:scale-[99%] cursor-pointer" onClick={ onClickQuit }>
+          <div className="flex flex-col justify-center items-center bg-[#F7F7F6] w-[850px] h-[650px] bg-white rounded-2xl" id="memorial-window">
+            <button id="xbtn" className="quit z-20 -mt-[596px] fixed w-[50px] flex justify-end ml-[775px] transition duration-100 active:scale-[99%] cursor-pointer" onClick={ onClickQuit }>
               <FontAwesomeIcon className='text-5xl text-[#2c4663]' id="xmark" icon={faXmark} />
             </button>
             <div id="win-title" className="fixed title flex justify-center flex-col pt-[30px] w-[850px] -mt-[610px]">
@@ -303,7 +307,7 @@ function Main() {
                 </div>
               <div className="border-b-[2px] border-gray-300 w-[850px]" id="sel-under-line"></div>
             </div>
-            <div id="cards" className="cards flex flex-wrap overflow-hidden overflow-y-visible justify-center items-start w-[850px] h-[400px] bg-[#f7f7f6] -mt-[40px] pt-4">
+            <div id="cards" className="cards flex flex-wrap overflow-hidden overflow-y-visible justify-center items-start w-[850px] h-[400px] bg-[#D3D4D1] w-[840px] rounded-lg -mt-[40px] pt-4">
               <button id="memorial-card" className='m-[2.5px] bg-white p-4 rounded-[10px] shadow-md flex justify-center items-center flex-col transition duration-100 active:scale-95 hover:scale-[101%]' onClick={ () => SelectMemorial("Yuuka") }>
                 <img id="memorial-img" className='w-[130px] h-[125px] object-cover mb-3 border-[2px] border-[#920008] border-b-[12px] rounded-[8px]' src={ yuuka_gym } />
                 <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
@@ -333,7 +337,10 @@ function Main() {
                 <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
               </button>
             </div>
-            <div id="yes-contain" className="fixed flex justify-center items-center">
+            <div id="yes-contain" className="fixed w-[850px] -mb-[500px] flex justify-center items-center">
+              <button id="cancel-btn-btn" className="transition duration-100 active:scale-90 mr-4" onClick={ onClickQuit }>
+                <img className="" id="yes-btn" src={CancelBtn} alt=""/>
+              </button>
               <button id="yes-btn-btn" className="transition duration-100 active:scale-90" onClick={ onClickQuit }>
                 <img className="" id="yes-btn" src={YesBtn} alt=""/>
               </button>
@@ -730,7 +737,7 @@ function Main() {
         </audio>
        : null }
 
-      {/* Memorial Acts */}
+      {/*/!* Memorial Acts *!/*/}
       { memorial == "Yuuka" ?
         <video className="h-screen w-screen object-cover overflow-auto -z-10 fixed" muted autoPlay loop>
           {/* object-none min-w-[2000px] overflow-auto fixed -ml-10 -mt-6 -z-10 */}
@@ -883,7 +890,7 @@ function Main() {
         </div>
       </div>
 
-      <img className='w-screen h-screen absolute -mt-[400px] -z-20' src={ Sub_bg } alt="" />
+      <img className='w-screen object-cover fixed -mt-[280px] brightness-75 -z-20' src={ fixBG } alt="" />
 
     </div>
   )
