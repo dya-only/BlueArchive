@@ -180,50 +180,83 @@
     margin-top: -24px;
   }
   #notice {
-    width: 43px;
-    height: 43px;
+    width: 38px;
+    height: 38px;
     margin-right: 16px;
   }
   #momotalk {
-    width: 40px;
+    width: 35px;
   }
   #mission {
-    width: 43px;
-    height: 43px;
-    margin-right: 14px;
-    /* margin-left: -2px; */
+    width: 38px;
+    height: 38px;
+    margin-right: 20px;
+    margin-left: 10px;
     margin-top: 20px;
   }
   #blue {
-    width: 48px;
-    height: 53px;
+    width: 42px;
+    height: 48px;
   }
   #use-icons {
     margin-bottom: -45px;
   }
   #t-notice {
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    font-size: 17px;
+    font-size: 15px;
     margin-top: 20px;
     margin-left: 20px;
   }
   #t-momotalk {
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    font-size: 17px;
+    font-size: 15px;
     margin-top: 20px;
     margin-left: -40px;
   }
   #t-mission {
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    font-size: 17px;
+    font-size: 15px;
     margin-top: -52px;
-    margin-left: 42px;
+    margin-left: 40px;
   }
   #t-blue {
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    font-size: 17px;
+    font-size: 15px;
     margin-top: -51px;
-    margin-left: -30px;
+    margin-left: -20px;
+  }
+  #t-cafe {
+    font-size: 14px;
+    margin-right: 45px;
+    margin-left: 1px;
+  }
+  #t-sche {
+    font-size: 14px;
+    margin-right: 42px;
+  }
+  #t-student {
+    font-size: 14px;
+    margin-right: 55px;
+  }
+  #t-set {
+    font-size: 14px;
+    margin-right: 50px;
+  }
+  #t-circle {
+    font-size: 14px;
+    margin-right: 50px;
+  }
+  #t-build {
+    font-size: 14px;
+    margin-right: 51px;
+  }
+  #t-store {
+    font-size: 14px;
+    margin-right: 53px;
+  }
+  #t-gacha {
+    font-size: 14px;
+    margin-right: 50px;
   }
   #task-btns {
     margin-bottom: 4%;
@@ -239,7 +272,7 @@
   }
   #student {
     width: 32px;
-    margin-right: 65px;
+    margin-right: 45px;
   }
   #set {
     width: 35px;
@@ -263,7 +296,7 @@
     margin-right: 40px;
   }
   #t-text {
-    visibility: hidden;
+    /*visibility: hidden;*/
   }
   #time {
     visibility: hidden;
@@ -271,6 +304,93 @@
   #full-top {
     margin-top: 40px;
     padding-right: 2px;
+  }
+  #task {
+    width: 140px;
+    margin-bottom: -55px;
+  }
+  #fullscreen {
+    font-size: 12px;
+    height: 25px;
+  }
+  #memorial-window {
+    width: 480px;
+    height: 320px;
+    border-radius: 8px;
+  }
+  #xbtn {
+    margin-top: -286px;
+    width: 20px;
+    margin-left: 452px;
+  }
+  #xmark {
+    font-size: 30px;
+  }
+  #win-title {
+    width: 500px;
+    padding-top: -1px;
+    margin-top: -310px;
+  }
+  #win-text {
+    width: 75px;
+    height: 35px;
+    font-size: 20px;
+    border-bottom: solid 3px #ffe03d;
+  }
+  #help-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #sel-under-line {
+    width: 480px;
+  }
+  #memorial-card {
+    width: 90px;
+    height: 120px;
+    margin: 2px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
+  }
+  #memorial-img {
+    transform: skewX(-5deg);
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+    border: 1px solid #920008;
+    border-bottom: solid 8px #920008;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  #memorial-count {
+    width: 80px;
+  }
+  #cards {
+    width: 480px;
+    height: 200px;
+    overflow: hidden;
+    overflow-y: visible;
+    padding-top: 8px;
+    background: #F7F7F6;
+  }
+  #memorial-btn {
+    margin: 1px;
+  }
+  #yes-contain {
+    width: 480px;
+    margin-bottom: -240px;
+  }
+  #yes-btn {
+    width: 140px;
   }
 }
 

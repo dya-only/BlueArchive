@@ -22,6 +22,8 @@ import MBlueItemMenu from '../assets/m_blue_item_menu.png'
 import MApItemMenu from '../assets/m_ap_item_menu.png'
 import MCoinItemMenu from '../assets/m_coin_item_menu.png'
 import plus from '../assets/plus.png'
+import memorialCount from './assets2/memorial-count.png'
+import YesBtn from './assets2/yes-btn.png'
 import yuuka_gym from "../assets/yuuka_gym.png"
 import hoshino_mizugi from "../assets/hoshino_mizugi.png"
 import momo_logo from "../assets/momo_logo.png"
@@ -274,14 +276,14 @@ function Main() {
 
       {/* FullScreen */}
       <div className="w-screen flex justify-end fixed md:mt-[80px] pr-4" id="full-top">
-        <button id="fullscreen" className='pl-2 pr-2 pt-1 pb-1 m-2 md:text-2xl text-[#16365C] bg-[#CBCCFF] rounded-md shadow-lg transition duration-100 active:scale-90' onClick={FullScreen}>전체화면</button>
+        <button id="fullscreen" className='pl-2 pr-2 pt-1 pb-1 m-2 text-2xl text-[#16365C] bg-[#CBCCFF] rounded-md shadow-lg transition duration-100 active:scale-90' onClick={FullScreen}>전체화면</button>
       </div>
 
       {/* Music Button */}
       { JSON.parse(isMusic.toString()) == false ?
         <div className="absolute w-full h-full backdrop-brightness-[0.2] flex items-center justify-center z-50 drop-shadow-2xl">
-          <div className="flex flex-col justify-center items-center w-[600px] h-[300px] bg-white rounded-2xl">
-            <div className="font-molu text-xl mb-8">※전체화면으로 설정해주세요<br/>사운드 재생을 위해 확인 버튼을 누르시면 시작합니다.<br/><br/>영상의 용량 문제로 인해 메모리얼 재생 중 약간의 지연이 생길 수 있습니다.</div>
+          <div className="flex flex-col justify-center items-center w-[650px] h-[300px] bg-white rounded-2xl">
+            <div className="font-molu text-xl mb-8">※전체화면으로 설정해주세요<br/>사운드 재생을 위해 확인 버튼을 누르시면 시작합니다.<br/></div>
             <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg' onClick={onMusic}>확인</button>
           </div>
         </div>
@@ -289,51 +291,52 @@ function Main() {
 
       {/* Select Memorial  */}
       { isSelectingMemorial == true ?
-        <div className="fixed w-full h-full backdrop-brightness-[0.8] flex items-center justify-center z-50 drop-shadow-2xl">
-          <div className=" flex flex-col justify-center w-[850px] h-[600px] bg-white rounded-2xl">
-            <button className="quit z-20 -mt-[546px] fixed w-[50px] flex justify-end ml-[786px] transition duration-100 active:scale-[99%] cursor-pointer" onClick={ onClickQuit }>
-              <FontAwesomeIcon className='text-5xl text-[#2c4663]' icon={faXmark} />
+        <div className="fixed w-full h-full backdrop-brightness-[0.8] flex items-center justify-center z-50">
+          <div className="flex flex-col justify-center w-[850px] h-[650px] bg-white rounded-2xl" id="memorial-window">
+            <button id="xbtn" className="quit z-20 -mt-[596px] fixed w-[50px] flex justify-end ml-[786px] transition duration-100 active:scale-[99%] cursor-pointer" onClick={ onClickQuit }>
+              <FontAwesomeIcon className='text-5xl text-[#2c4663]' id="xmark" icon={faXmark} />
             </button>
-            <div className="fixed title flex justify-center flex-col pt-[30px] w-[850px] -mt-[570px]">
-              <div className='flex justify-center'>
-                <div className="font-molu-bold text-3xl text-[#2c4663] w-[115px] border-b-[4px] border-[#ffe03d]">당번 선택</div>
-                  <button className="help transition duration-100 active:scale-90 text-white bg-[#2a4566] font-bold text-xl w-8 h-8 ml-2 rounded-md">?</button>
+            <div id="win-title" className="fixed title flex justify-center flex-col pt-[30px] w-[850px] -mt-[610px]">
+              <div className='flex justify-center items-center'>
+                <div id="win-text" className="font-molu-bold text-3xl text-[#2c4663] w-[115px] h-[45px] border-b-[4px] border-[#ffe03d]">당번 선택</div>
+                  <button id="help-btn" className="help transition duration-100 active:scale-90 text-white bg-[#2a4566] font-bold text-xl w-8 h-8 ml-2 mb-2 rounded-md">?</button>
                 </div>
-              <div className="border-b-[2px] border-gray-300 w-[850px]"></div>
+              <div className="border-b-[2px] border-gray-300 w-[850px]" id="sel-under-line"></div>
             </div>
-            <div className="cards flex flex-wrap overflow-hidden overflow-y-visible justify-center items-start w-[850px] h-[400px] -mt-4 pt-4">
-              <button className='m-4' onClick={ () => SelectMemorial("Yuuka") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ yuuka_gym } />
-                <div className='text-xl text-[#2c4663]'>유우카 (체육복)</div>
+            <div id="cards" className="cards flex flex-wrap overflow-hidden overflow-y-visible justify-center items-start w-[850px] h-[400px] bg-[#f7f7f6] -mt-[40px] pt-4">
+              <button id="memorial-card" className='m-[2.5px] bg-white p-4 rounded-[10px] shadow-md flex justify-center items-center flex-col transition duration-100 active:scale-95 hover:scale-[101%]' onClick={ () => SelectMemorial("Yuuka") }>
+                <img id="memorial-img" className='w-[130px] h-[125px] object-cover mb-3 border-[2px] border-[#920008] border-b-[12px] rounded-[8px]' src={ yuuka_gym } />
+                <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
               </button>
-              <button className='m-4' onClick={ () => SelectMemorial("Hoshino") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ hoshino_mizugi } />
-                <div className='text-xl text-[#2c4663]'>호시노 (수영복)</div>
+              <button id="memorial-card" className='m-[2.5px] bg-white p-4 rounded-[10px] shadow-md flex justify-center items-center flex-col transition duration-100 active:scale-95 hover:scale-[101%]' onClick={ () => SelectMemorial("Hoshino") }>
+                <img id="memorial-img" className='w-[130px] h-[125px] object-cover mb-3 border-[2px] border-[#920008] border-b-[12px] rounded-[8px]' src={ hoshino_mizugi } />
+                <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
               </button>
-              <button className='m-4' onClick={ () => SelectMemorial("Azusa") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "아즈사(수영복)")].profile } />
-                <div className='text-xl text-[#2c4663]'>아즈사 (수영복)</div>
+              <button id="memorial-card" className='m-[2.5px] bg-white p-4 rounded-[10px] shadow-md flex justify-center items-center flex-col transition duration-100 active:scale-95 hover:scale-[101%]' onClick={ () => SelectMemorial("Azusa") }>
+                <img id="memorial-img" className='w-[130px] h-[125px] object-cover mb-3 border-[2px] border-[#920008] border-b-[12px] rounded-[8px]' src={  Characters[Characters.findIndex(e => e.name == "아즈사(수영복)")].profile } />
+                <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
               </button>
-              <button className='m-4' onClick={ () => SelectMemorial("Atsuko") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "아츠코")].profile } />
-                <div className='text-xl text-[#2c4663]'>아츠코</div>
+              <button id="memorial-card" className='m-[2.5px] bg-white p-4 rounded-[10px] shadow-md flex justify-center items-center flex-col transition duration-100 active:scale-95 hover:scale-[101%]' onClick={ () => SelectMemorial("Atsuko") }>
+                <img id="memorial-img" className='w-[130px] h-[125px] object-cover mb-3 border-[2px] border-[#920008] border-b-[12px] rounded-[8px]' src={  Characters[Characters.findIndex(e => e.name == "아츠코")].profile } />
+                <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
               </button>
-              <button className='m-4' onClick={ () => SelectMemorial("Mika") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "미카")].profile } />
-                <div className='text-xl text-[#2c4663]'>미카</div>
+              <button id="memorial-card" className='m-[2.5px] bg-white p-4 rounded-[10px] shadow-md flex justify-center items-center flex-col transition duration-100 active:scale-95 hover:scale-[101%]' onClick={ () => SelectMemorial("Mika") }>
+                <img id="memorial-img" className='w-[130px] h-[125px] object-cover mb-3 border-[2px] border-[#920008] border-b-[12px] rounded-[8px]' src={  Characters[Characters.findIndex(e => e.name == "미카")].profile } />
+                <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
               </button>
-              <button className='m-4' onClick={ () => SelectMemorial("Hina(Swim)") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
-                <div className='text-xl text-[#2c4663]'>히나(수영복)</div>
+              <button id="memorial-card" className='m-[2.5px] bg-white p-4 rounded-[10px] shadow-md flex justify-center items-center flex-col transition duration-100 active:scale-95 hover:scale-[101%]' onClick={ () => SelectMemorial("Hina(Swim)") }>
+                <img id="memorial-img" className='w-[130px] h-[125px] object-cover mb-3 border-[2px] border-[#920008] border-b-[12px] rounded-[8px]' src={  Characters[Characters.findIndex(e => e.name == "히나(수영복)")].profile } />
+                <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
               </button>
-              <button className='m-4' onClick={ () => SelectMemorial("Kazusa") }>
-                <img className='w-[150px] transition duration-100 active:scale-95 hover:scale-105' src={ Characters[Characters.findIndex(e => e.name == "카즈사")].profile } />
-                <div className='text-xl text-[#2c4663]'>카즈사</div>
+              <button id="memorial-card" className='m-[2.5px] bg-white p-4 rounded-[10px] shadow-md flex justify-center items-center flex-col transition duration-100 active:scale-95 hover:scale-[101%]' onClick={ () => SelectMemorial("Kazusa") }>
+                <img id="memorial-img" className='w-[130px] h-[125px] object-cover mb-3 border-[2px] border-[#920008] border-b-[12px] rounded-[8px]' src={  Characters[Characters.findIndex(e => e.name == "카즈사")].profile } />
+                <img className='w-[130px]' id='memorial-count' src={memorialCount} alt=""/>
               </button>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="border-b-[2px] border-gray-300 w-[850px]"></div>
-              <button className='music-btn bg-[#456399] font-molu transition duration-100 active:scale-90 text-white p-3 w-[80px] drop-shadow-2xl flex justify-center items-center drop-shadow-xl rounded-lg mt-6 -mb-48' onClick={onClickQuit}>확인</button>
+            <div id="yes-contain" className="fixed flex justify-center items-center">
+              <button id="yes-btn-btn" className="transition duration-100 active:scale-90" onClick={ onClickQuit }>
+                <img className="" id="yes-btn" src={YesBtn} alt=""/>
+              </button>
             </div>
           </div>
         </div>
@@ -840,7 +843,7 @@ function Main() {
           </div>
 
           <div className="name">
-            <div className="usrname font-molu-bold text-white text-[24px]" id="name">귀여운디아</div>
+            <div className="usrname font-molu-bold text-white text-[24px]" id="name">공주님을지켜</div>
             <div className="exp-bar bg-[#3e4f61] h-[5px] w-[215px]" id="exp">
               {/* <div className="exp-progress bg-[#59eefb] h-[5px] w-[60%]"></div> */}
               <div id="exp-bar">
@@ -860,8 +863,8 @@ function Main() {
           <img className='notice w-[70px] h-[70px] transition duration-100 active:scale-90 cursor-pointer m-4 mr-10' id='notice' src={ Notice } />
           <button className='mr-[80px] mb-[115px]' id='momobtn' onClick={ onClickMomo }>
             <img className='momo-talk w-[63px] absolute transition duration-100 active:scale-90 cursor-pointer m-4' id='momotalk' src={ MomoTalk } />
-            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[70px] mt-[20px] fixed animate-ping"></div>
-            <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[70px] mt-[20px] fixed"></div>
+            {/*<div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[70px] mt-[20px] fixed animate-ping"></div>*/}
+            {/*<div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[70px] mt-[20px] fixed"></div>*/}
           </button>
         </div>
         <div className="flex w-[140px] justify-center ml-[85px]" id='under'>

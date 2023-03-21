@@ -47,8 +47,8 @@ function TaskBar() {
         <img className='w-12 mt-2 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' id="sche" src={ Schedule }></img>
         <Link to="/students">
           <img className='w-13 mt-3 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' id="student" src={ Students }></img>
-          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[40px] -mt-[70px] fixed animate-ping"></div>
-          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[40px] -mt-[70px] fixed"></div>
+          {/*<div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[40px] -mt-[70px] fixed animate-ping" id="ping st-ping"></div>*/}
+          {/*<div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[40px] -mt-[70px] fixed" id="ping st-ping"></div>*/}
         </Link>
         <img className='w-15 mt-4 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' id="set" src={ Set }></img>
         <img className='w-15 mt-3 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' id="circle" src={ Circle }></img>
@@ -56,20 +56,20 @@ function TaskBar() {
         <img className='w-15 mt-5 mr-[100px] transition duration-100 active:scale-90 cursor-pointer' id="store" src={ Store }></img>
         <Link to="/pickup">
           <img className='w-15 mr-[70px] transition duration-100 active:scale-90 cursor-pointer' id="gacha" src={ Gacha }></img>
-          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[50px] -mt-[70px] fixed animate-ping"></div>
-          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[50px] -mt-[70px] fixed"></div>
+          {/*<div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[50px] -mt-[70px] fixed animate-ping"></div>*/}
+          {/*<div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[50px] -mt-[70px] fixed"></div>*/}
         </Link>
       </div>
 
       <div className="buttons-text z-10 absolute w-screen flex justify-start items-center mb-[1.5%] ml-[17%]" id='t-text'>
         {/* <img className='w-16 mr-[68px] invisible' src={ Cafe }></img> */}
-        <div className="text-2xl font-molu text-[#16365c] mr-[108px]" id="t-cafe t-text">카페</div>
-        <div className="text-2xl font-molu text-[#16365c] mr-[97px]" id="t-sche t-text">스케줄</div>
-        <div className="text-2xl font-molu text-[#16365c] mr-[114px]" id="t-student t-text">학생</div>
-        <div className="text-2xl font-molu text-[#16365c] mr-[114px]" id="t-set t-text">편성</div>
-        <div className="text-2xl font-molu text-[#16365c] mr-[112px]" id="t-circle t-text">서클</div>
-        <div className="text-2xl font-molu text-[#16365c] mr-[114px]" id="t-build t-text">제조</div>
-        <div className="text-2xl font-molu text-[#16365c] mr-[123px]" id="t-store t-text">상점</div>
+        <div className="text-2xl font-molu text-[#16365c] mr-[108px]" id="t-cafe">카페</div>
+        <div className="text-2xl font-molu text-[#16365c] mr-[100px]" id="t-sche">스케줄</div>
+        <div className="text-2xl font-molu text-[#16365c] mr-[113px]" id="t-student">학생</div>
+        <div className="text-2xl font-molu text-[#16365c] mr-[110px]" id="t-set">편성</div>
+        <div className="text-2xl font-molu text-[#16365c] mr-[112px]" id="t-circle">서클</div>
+        <div className="text-2xl font-molu text-[#16365c] mr-[114px]" id="t-build">제조</div>
+        <div className="text-2xl font-molu text-[#16365c] mr-[123px]" id="t-store">상점</div>
         <div className="text-2xl font-molu text-[#16365c]" id="t-gacha">모집</div>
       </div>
       
@@ -80,8 +80,8 @@ function TaskBar() {
       <div className="task mb-32">
         <Link to="/task">
           <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[170px] fixed animate-ping"></div>
-          <div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[170px] fixed"></div>
-          <img className='w-[250px] transition duration-100 active:scale-90 cursor-pointer' src={ Task } />
+          {/*<div className="round rounded-full bg-red-500 w-[15px] h-[15px] ml-[170px] fixed"></div>*/}
+          <img className='w-[250px] transition duration-100 active:scale-90 cursor-pointer' id="task" src={ Task } />
         </Link>
       </div>
 
