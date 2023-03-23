@@ -536,6 +536,66 @@
     width: 260px;
     margin: 4px;
   }
+
+  #navbar {
+    height: 35px;
+  }
+  #navbar-img {
+    position: fixed;
+    width: 80vw;
+    height: 35px;
+    object-fit: cover;
+  }
+  #prev {
+    width: 40px;
+    height: 40px;
+    margin-top: 65px;
+  }
+  #prev-icon {
+    font-size: 30px;
+  }
+  #pickup-title {
+    font-size: 20px;
+    height: 37px;
+    margin-top: -3px;
+    margin-left: -58px;
+    border-bottom: solid 3px #ffe03d;
+  }
+  #pickup-help {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #pickup-btn-btn {
+    margin-right: 15px;
+  }#pickup-btn-btn-right {
+    margin-right: 25px;
+  }
+  #pickup-btn {
+    width: 25px;
+  }
+  #pickup-sub {
+    margin-right: 15px;
+    height: 20px;
+    width: 1px;
+  }
+  #pku-window {
+    width: 360px;
+    height: 290px;
+    margin-top: 35px;
+  }
+  #pku-tab {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+  }
+  #pku-info {
+    width: 360px;
+    height: 200px;
+  }
 }
 
 @tailwind base;
