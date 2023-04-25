@@ -1,5 +1,5 @@
 # Blue Archive Clone WebSite
-React.js + Typescript 로 개발중인 (비공식)블루아카이브 클론 웹사이트입니다.
+React.js + Typescript + Tailwindcss 로 개발중인 (비공식)블루아카이브 클론 웹사이트입니다.
 
 
 # 사용 가능한 기능 >
@@ -15,3 +15,5 @@ React.js + Typescript 로 개발중인 (비공식)블루아카이브 클론 웹�
  - 학생 모집
 
  - 학생 모집 (진행)
+
+ - 모바일
